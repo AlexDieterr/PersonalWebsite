@@ -1,6 +1,14 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+import { provideRouter, Routes } from '@angular/router';
+import { HeroComponent } from './app/hero/hero.component';
+import { ContactComponent } from './app/contact/contact.component';
 import { AppComponent } from './app/app.component';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+const routes: Routes = [
+  { path: '', component: HeroComponent }, // Default route
+  { path: 'contact', component: ContactComponent }, // Contact route
+];
+
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes)], // Provide the routes
+}).catch((err) => console.error(err));
