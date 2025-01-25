@@ -1,14 +1,21 @@
-<section class="hero">
-     <div class="photo">
-        <img src="/ProfilePic.jpg" alt="Alex Tsuyoshi Dieter" />
-      </div>
+<section class="hero" id="hero">
+    <div class="photo">
+        <img src="/ProfilePic.jpg" alt="Alexander Tsuyoshi Dieter" />
+    </div>
 
     <div class="intro">
-      <p class="small-text">Hello, I'm</p>
-      <h1>
-        <a routerLink="/about" class="name-link">Alexander Tsuyoshi Dieter</a>
-      </h1>
-      <p class="title">Student, Data Scientist</p>
-      <button class="contact-btn" routerLink="/contact">Contact Me</button>
+        <p class="small-text">Hello, I'm</p>
+        <h1>
+        <span class="name">Alexander Tsuyoshi Dieter</span>
+        </h1>
+        <p class="title">Student, Data Scientist</p>
+        <div class="buttons">
+
+        <button class="contact-btn" (click)="scrollToContact()">
+            Contact Me
+        </button>
+    
+        </div>
     </div>
-  </section>
+</section>
+     
