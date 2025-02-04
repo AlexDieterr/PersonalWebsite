@@ -15,4 +15,15 @@ export class HeroComponent {
       contactSection.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to it
     }
   }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      const nameElement = document.querySelector('.name');
+      if (nameElement) {
+        nameElement.classList.add('typing-done'); // Remove cursor after animation
+      }
+    }, 2000); // Matches animation duration
+  }
+
 }
+

@@ -7,9 +7,9 @@
   
     <nav class="nav-links">
       <a routerLink="/" routerLinkActive="active-link">Home</a>
-      <a [routerLink]="[]" fragment="about" routerLinkActive="active-link">About Me</a>
-      <a routerLink="/projects" routerLinkActive="active-link">Projects</a>
-      <a class = "contact" routerLink="/contact" routerLinkActive="active-link">Contact</a>
+      <a class = "about" (click) ="scrollToAbout()" routerLinkActive="active-link">About Me</a>
+      <a class = "projects" (click) = "scrollToProjects()" routerLinkActive="active-link">Projects</a>
+      <a class = "contact" (click) = "scrollToContact()" routerLinkActive="active-link">Contact</a>
       <a
       class="linkedin"
       href="https://www.linkedin.com/in/alexdieter/"

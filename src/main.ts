@@ -1,16 +1,14 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter, Routes } from '@angular/router';
-import { HeroComponent } from './app/hero/hero.component';
-import { AboutComponent } from './app/about/about.component';
-import { ContactComponent } from './app/contact/contact.component';
+import { provideRouter, Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app/app.component';
+import { HomeComponent } from './app/home/home.component';
+import { ProjectDetailsComponent } from './app/project-details/project-details.component';
 
 const routes: Routes = [
-  { path: '', component: HeroComponent }, // Default route
-  { path: 'about', component: AboutComponent }, // About Me route
-  { path: 'contact', component: ContactComponent }, // Contact route
+  { path: '', component: HomeComponent },
+  { path: 'projects/:id', component: ProjectDetailsComponent },
 ];
 
 bootstrapApplication(AppComponent, {
-  providers: [provideRouter(routes)], // Provide the routes
+  providers: [provideRouter(routes)],
 }).catch((err) => console.error(err));

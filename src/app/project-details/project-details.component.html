@@ -1,0 +1,34 @@
+<app-header></app-header>
+
+<section class="project-details">
+    <!-- Project Title & Description -->
+    <div class="project-intro">
+        <h1 class="project-title">{{ project?.title }}</h1>
+        <p class="project-description">{{ project?.description }}</p>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="project-main">
+        <div class="project-preview">
+            <img *ngIf="project?.image" [src]="project?.image" [alt]="project?.title" />
+            <div *ngIf="project?.liveDemo" class="project-demo">
+                <iframe [src]="project?.liveDemo" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- Side Panel -->
+        <div class="project-info">
+            <h3>Technologies Used:</h3>
+            <ul>
+                <li *ngFor="let tech of project?.techStack">{{ tech }}</li>
+            </ul>
+
+            <div class="project-links">
+                <a *ngIf="project?.githubLink" [href]="project?.githubLink" target="_blank">View Code</a>
+                <a *ngIf="project?.liveDemo" [href]="project?.liveDemo" target="_blank">Live Demo</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-contact></app-contact>

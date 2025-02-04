@@ -1,0 +1,45 @@
+/* Style the contact section */
+.contact {
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  /* Title Styling */
+  .contact-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Flex container for buttons */
+  .contact-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Ensures responsiveness */
+    gap: 15px; /* Space between buttons */
+  }
+  
+  /* Remove all extra styling from the buttons */
+  .contact-buttons a {
+    display: inline-block; /* Makes the anchor an inline-block for proper layout */
+    line-height: 0; /* Removes any default line-height */
+    border: none; /* Removes borders */
+    padding: 0; /* Removes padding */
+    background: none; /* Removes background */
+    cursor: pointer; /* Adds pointer cursor for interactivity */
+    transition: transform 0.2s ease; /* Adds hover effect transition */
+  }
+  
+  .contact-buttons a:hover {
+    transform: scale(1.1); /* Slightly enlarges the button on hover */
+  }
+  
+  /* Ensure the image defines the size */
+  .contact-buttons img {
+    width: 50px; /* Adjust the size of the image here */
+    height: 50px; /* Ensure the height matches */
+    object-fit: contain; /* Keeps the aspect ratio of the icon */
+  }
+

@@ -1,1 +1,10 @@
-<p>projects works!</p>
+<section id="projects" class="projects">
+    <h2 class="projects-title">Projects</h2>
+    <div class="projects-grid">
+        <div class="project-card" *ngFor="let project of projects" (click)="goToProject(project.id)">
+            <img [src]="project.image" [alt]="project.title" class="project-thumbnail" />
+            <p class="project-title">{{ project.title }} ({{ project.year }})</p>
+            <p class="project-tech">{{ project.tech }}</p>
+        </div>
+    </div>
+</section>

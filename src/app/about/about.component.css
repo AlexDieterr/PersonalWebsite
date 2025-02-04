@@ -1,0 +1,96 @@
+.about-me {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 2rem;
+    background-color: #f4f4f4;
+}
+
+/* Top Content: Text & Main Images Side by Side */
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* About Me Text */
+.about-text {
+    flex: 1;
+    max-width: 45%;
+    text-align: left;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Main Images on Right Side */
+.main-images {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    gap: 15px;
+}
+
+.main-images img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+/* Extra Images Below */
+.extra-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.extra-images img {
+    width: 180px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+
+
+/* Underline animation */
+@keyframes underline-slide-in {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.about-me-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures everything is centered */
+}
+
+.about-me-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 0.4rem;
+    display: inline-block; /* Helps keep it centered */
+    text-align: center;
+}
+
+.underline {
+    width: 50px;
+    height: 4px;
+    background: linear-gradient(90deg, #90cbf8, #3a85b7);
+    padding-left: 80px;
+    margin-top: 5px;
+    border-radius: 2px;
+    transform: scaleX(0);
+    animation: underline-slide-in 0.8s ease-out forwards;
+}
