@@ -24,6 +24,33 @@
     line-height: 1.6;
 }
 
+/* Style the About Me Heading like the Projects Title */
+.about-text h2 {
+    text-align: center;
+    font-size: 48px;  /* Increase size similar to Projects title */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    animation: fadeInSlide 1s ease-out forwards;
+}
+
+/* Fade-in animation for the heading */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Main Images on Right Side */
 .main-images {
     flex: 1;
@@ -56,8 +83,6 @@
     object-fit: contain;
 }
 
-
-
 /* Underline animation */
 @keyframes underline-slide-in {
     from {
@@ -75,21 +100,14 @@
     align-items: center; /* Ensures everything is centered */
 }
 
-.about-me-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: black;
-    margin-bottom: 0.4rem;
-    display: inline-block; /* Helps keep it centered */
-    text-align: center;
-}
-
+/* The existing .underline rule – unchanged */
 .underline {
-    width: 50px;
+    width: 260px;
     height: 4px;
     background: linear-gradient(90deg, #90cbf8, #3a85b7);
     padding-left: 80px;
     margin-top: 5px;
+    margin-left:100px;
     border-radius: 2px;
     transform: scaleX(0);
     animation: underline-slide-in 0.8s ease-out forwards;

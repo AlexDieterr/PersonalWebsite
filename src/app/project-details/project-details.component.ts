@@ -29,32 +29,37 @@ export class ProjectDetailsComponent {
     'HTML': '/icons8-html5-48.png',
     'TypeScript': '/icons8-typescript-48.png',
     'Numpy': '/icons8-numpy-48.png',
-    'VsCode': '/icons8-vs-code-48.png',
-    'Node.js': '/icons8-node-js-48.png',
+    'VSCode': '/icons8-vs-code-48.png',
+    'Node.js': '/icons8-nodejs-48.png',
     'Python': '/icons8-python-48.png',
     'Pandas':'/icons8-pandas-48.png',
-    'Github':'/icons8-python-48.png'
+    'Github':'/icons8-python-48.png',
+    'Matplotlib':'/Matplotlib.png',
+    'Pytorch':'/pytorch.png',
+    'Scikit':'/scikit.png',
+    'Scipy':'/scipy.png'
+
   };
 
   projectData: Record<string, any> = {
     project1: {
       title: 'Home Field Advantage',
       description: 'An analysis of home-field advantage in professional sports using statistical modeling.',
-      techStack: ['Python', 'Pandas', 'Matplotlib'],
+      techStack: ['Python', 'Pandas', 'Matplotlib','VSCode'],
       pdfUrl: '/home-field-advantage.pdf',
       type: 'pdf'
     },
     project2: {
       title: 'Property Price Predictor',
       description: 'A machine learning model to predict property prices.',
-      techStack: ['Python', 'Scikit-Learn', 'Flask'],
+      techStack: ['Python', 'Scikit', 'Pytorch', 'Pandas', 'Numpy', 'Scipy','VSCode'],
       githubLink: 'https://github.com/AlexDieterr/NewPropertyPrice',
       type: 'property'
     },
     project3: {
       title: 'Investment App',
       description: 'A web-based investment tracking app built with Angular.',
-      techStack: ['Angular', 'Typescript', 'HTML/CSS','VSCode'],
+      techStack: ['Angular', 'TypeScript', 'HTML','VSCode'],
       videoUrl: '/Investment_Recording.mov',  // ✅ MOV format (convert to MP4 if needed)
       githubLink: 'https://github.com/AlexDieterr/InvestmentAppAngular',
       type: 'video'

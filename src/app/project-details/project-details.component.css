@@ -638,3 +638,26 @@ body {
   .tool-logos img:hover {
     transform: scale(1.1);
   }
+
+  /* Common styling for both tool boxes */
+.tools-standard,
+.tools-alt {
+  background: #e8f4ff;       /* same background color */
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  color: #444;
+}
+
+/* Tools Standard: layout as before */
+.tools-standard {
+  text-align: left;
+  /* It might be part of a flex container so width is determined by that container */
+}
+
+/* Tools Alt: force a centered rectangle with fixed max-width */
+.tools-alt {
+  text-align: left;
+  max-width: 700px;         /* sets the maximum width */
+  margin: 30px auto;        /* centers it on the page */
+}

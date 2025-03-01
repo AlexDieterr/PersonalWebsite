@@ -58,7 +58,12 @@
               with a significantly smaller win margin compared to non-rivalry games.<br>
         </p>
     </div>
+
+
+
+
 </section>
+
 
 <!-- ✅ Normal Project Layout for Other Projects -->
 
@@ -101,20 +106,36 @@
         </p>
       </section>
 
-      <!-- Tools Section for Investment App and Task Management System -->
-<section class="tools" *ngIf="(project.title === 'Investment App' || project.title === 'Task Management System')">
-    <h2>Tools Used</h2>
-    <div class="tool-logos">
-      <img *ngFor="let tool of project.techStack"
-           [src]="toolLogos[tool] || '/assets/logos/default.png'"
-           [alt]="tool"
-           [title]="tool">
-    </div>
-  </section>
-    </div>
-  </section>
+      <section class="tools" *ngIf="project.title === 'Investment App' || project.title === 'Task Management System'"
+      [ngClass]="{
+        'tools-standard': project.title === 'Investment App' || project.title === 'Task Management System',
+      }">
+      <h2>Tools Used</h2>
+      <div class="tool-logos">
+        <img *ngFor="let tool of project.techStack"
+             [src]="toolLogos[tool] || '/assets/logos/default.png'"
+             [alt]="tool"
+             [title]="tool">
+      </div>
+    </section>
+
+        </div>
+</section>
 </ng-template>
 
+<section class="tools" *ngIf=" project.title === 'Home Field Advantage' || project.title === 'Property Price Predictor' || 
+project.title === 'Personal Website'"
+      [ngClass]="{
+        'tools-alt': project.title === 'Home Field Advantage' || project.title === 'Property Price Predictor' || project.title === 'Personal Website'
+      }">
+      <h2>Tools Used</h2>
+      <div class="tool-logos">
+        <img *ngFor="let tool of project.techStack"
+             [src]="toolLogos[tool] || '/assets/logos/default.png'"
+             [alt]="tool"
+             [title]="tool">
+      </div>
+    </section>
 
 <section class="github-section">
     <h2>View the Code!</h2>
