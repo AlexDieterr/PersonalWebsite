@@ -46,7 +46,7 @@ export class ProjectDetailsComponent {
       title: 'Home Field Advantage',
       description: 'An analysis of home-field advantage in professional sports using statistical modeling.',
       techStack: ['Python', 'Pandas', 'Matplotlib','VSCode'],
-      pdfUrl: '/home-field-advantage.pdf',
+      pdfUrl: '/assets/home-field-advantage.pdf',
       type: 'pdf'
     },
     project2: {
