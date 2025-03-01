@@ -1,77 +1,112 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { HeaderComponent } from '../header/header.component';
 import { ContactComponent } from '../contact/contact.component';
-
-interface Project {
-  title: string;
-  description: string;
-  image: string;
-  liveDemo: string;
-  githubLink: string;
-  techStack: string[];
-}
 
 @Component({
   selector: 'app-project-details',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, ContactComponent],
+  imports: [CommonModule, PdfViewerModule, HeaderComponent, ContactComponent],
   templateUrl: './project-details.component.html',
-  styleUrls: ['./project-details.component.css'],
+  styleUrls: ['./project-details.component.css']
 })
 export class ProjectDetailsComponent {
   projectId: string | null = '';
-  project: Project | null = null;
+  project: any = null;
+  isHomeFieldAdvantage = false;
+  isVideoProject = false;
+  currentPage: number | null = 1;
+  isFullscreen = false;
 
-  projectData: Record<string, Project> = {
+  @ViewChild('pdfContainer', { static: false }) pdfContainer!: ElementRef<HTMLElement>;
+
+  sections: { id: string; title: string; page: number }[] = [];
+
+  projectData: Record<string, any> = {
     project1: {
       title: 'Home Field Advantage',
       description: 'An analysis of home-field advantage in professional sports using statistical modeling.',
-      image: 'assets/home-field-advantage.png',
-      liveDemo: '',
-      githubLink: 'https://github.com/AlexDieterr/HomeFieldAdvantage',
       techStack: ['Python', 'Pandas', 'Matplotlib'],
+      pdfUrl: '/home-field-advantage.pdf',
+      type: 'pdf'
     },
     project2: {
       title: 'Property Price Predictor',
-      description: 'A machine learning model predicting property prices based on historical data and key metrics.',
-      image: 'assets/property-price.png',
-      liveDemo: '',
-      githubLink: 'https://github.com/AlexDieterr/PropertyPricePredictor',
-      techStack: ['Python', 'Scikit-Learn', 'Jupyter Notebook'],
+      description: 'A machine learning model to predict property prices.',
+      techStack: ['Python', 'Scikit-Learn', 'Flask'],
+      videoUrl: '/property-predictor-demo.mp4', // ✅ Use MP4 if possible
+      githubLink: 'https://github.com/yourusername/property-price-predictor',
+      type: 'video'
     },
     project3: {
       title: 'Investment App',
-      description: 'An Angular-based investment tracking app that allows users to monitor stocks and cryptocurrencies.',
-      image: 'assets/investment-app.png',
-      liveDemo: 'https://investment-app.example.com',
-      githubLink: 'https://github.com/AlexDieterr/InvestmentApp',
-      techStack: ['Angular', 'TypeScript', 'Firebase'],
+      description: 'A web-based investment tracking app built with Angular.',
+      techStack: ['Angular', 'Firebase', 'TypeScript'],
+      videoUrl: '/Investment_Recording.mov',  // ✅ MOV format (convert to MP4 if needed)
+      githubLink: 'https://github.com/yourusername/investment-app',
+      type: 'video'
     },
     project4: {
-      title: 'Task Management',
-      description: 'A productivity app to manage daily tasks and collaborate with teams effectively.',
-      image: 'assets/task-manager.png',
-      liveDemo: '',
-      githubLink: 'https://github.com/AlexDieterr/TaskManagement',
-      techStack: ['Angular', 'TypeScript', 'Node.js'],
-    },
-    project5: {
-      title: 'Personal Website',
-      description: 'The website you are currently viewing! Built with Angular to showcase my projects and experience.',
-      image: 'assets/personal-website.png',
-      liveDemo: '',
-      githubLink: 'https://github.com/AlexDieterr/PersonalWebsite',
-      techStack: ['Angular', 'CSS', 'TypeScript'],
-    },
+      title: 'Task Management System',
+      description: 'A full-stack task management system with authentication and real-time updates.',
+      techStack: ['Angular', 'Node.js', 'Express', 'MongoDB', 'TypeScript'],
+      videoUrl: '/task-management.mov',  // ✅ Correct video file
+      githubLink: 'https://github.com/AlexDieterr/TaskManagementApp',  // ✅ Correct GitHub repo
+      type: 'video'
+    }
   };
 
   constructor(private route: ActivatedRoute) {
-    this.projectId = this.route.snapshot.paramMap.get('id');
-    
-    if (this.projectId && this.projectData[this.projectId]) {
-      this.project = this.projectData[this.projectId];
+    this.route.paramMap.subscribe(params => {
+      this.projectId = params.get('id');
+
+      if (this.projectId && this.projectData[this.projectId]) {
+        this.project = this.projectData[this.projectId];
+
+        if (this.project.type === 'pdf') {
+          this.isHomeFieldAdvantage = true;
+          this.sections = [
+            { id: 'intro', title: 'Introduction', page: 1 },
+            { id: 'data', title: 'Data', page: 2 },
+            { id: 'weather', title: 'Weather & Familiarity', page: 9 },
+            { id: 'explore', title: 'Exploratory Data Analysis', page: 12 },
+            { id: 'viz', title: 'Visualizations & Insights', page: 17 },
+            { id: 'playoff', title: 'Playoffs vs. Regular Season', page: 24 },
+            { id: 'rivalry', title: 'Rivalry Game Analysis', page: 28 },
+          ];
+        } else if (this.project.type === 'video') {
+          this.isVideoProject = true;
+        }
+      }
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+      this.isFullscreen = !!document.fullscreenElement;
+    });
+  }
+
+  scrollToSection(pageNumber: number) {
+    if (this.currentPage === pageNumber) {
+      this.currentPage = null; 
+      setTimeout(() => {
+        this.currentPage = pageNumber;
+      }, 100);
+    } else {
+      this.currentPage = pageNumber;
+    }
+  }
+
+  /* ✅ Toggle Fullscreen Mode */
+  toggleFullScreen() {
+    const elem = this.pdfContainer.nativeElement;
+    if (!this.isFullscreen) {
+      elem.requestFullscreen().catch(err => console.error("Fullscreen error:", err));
+      this.isFullscreen = true;
+    } else {
+      document.exitFullscreen();
+      this.isFullscreen = false;
     }
   }
 }

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-hero',
@@ -8,22 +9,26 @@ import { RouterModule } from '@angular/router';
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css'
 })
-export class HeroComponent {
+export class HeroComponent implements AfterViewInit {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   scrollToContact() {
-    const contactSection = document.getElementById('contact'); // Find the contact section
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to it
+    if (isPlatformBrowser(this.platformId)) { 
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      const nameElement = document.querySelector('.name');
-      if (nameElement) {
-        nameElement.classList.add('typing-done'); // Remove cursor after animation
-      }
-    }, 2000); // Matches animation duration
+    if (isPlatformBrowser(this.platformId)) { 
+      setTimeout(() => {
+        const nameElement = document.querySelector('.name');
+        if (nameElement) {
+          nameElement.classList.add('typing-done');
+        }
+      }, 2000);
+    }
   }
-
 }
-

@@ -1,34 +1,113 @@
 <app-header></app-header>
 
-<section class="project-details">
-    <!-- Project Title & Description -->
-    <div class="project-intro">
-        <h1 class="project-title">{{ project?.title }}</h1>
-        <p class="project-description">{{ project?.description }}</p>
+<!-- ✅ Page Title (Project Title) -->
+<div class="page-title">
+    <h1>{{ project?.title }}</h1>
+</div>
+
+<!-- ✅ If project is Home Field Advantage, show PDF Viewer -->
+<div *ngIf="isHomeFieldAdvantage; else normalProjectLayout" class="project-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <ul>
+            <li *ngFor="let section of sections"
+                [class.active]="currentPage === section.page"
+                (click)="scrollToSection(section.page)">
+                {{ section.title }}
+            </li>
+        </ul>
+    </aside>
+
+    <!-- ✅ PDF Viewer with Fullscreen Option -->
+    <div class="pdf-container" #pdfContainer>
+        <button class="fullscreen-btn" (click)="toggleFullScreen()">
+            {{ isFullscreen ? '⨉' : '⤢' }}
+        </button>
+
+        <pdf-viewer *ngIf="currentPage !== null"
+                    [src]="project?.pdfUrl" 
+                    [render-text]="true" 
+                    [page]="currentPage">
+        </pdf-viewer>
+    </div>
+</div>
+
+<!-- ✅ Overview & Results Section (Only for Home Field Advantage) -->
+<section *ngIf="isHomeFieldAdvantage" class="overview-results">
+    <div class="overview">
+        <h2>Overview</h2>
+        <p>
+            Home-field advantage is a widely debated phenomenon in professional sports, particularly in the NFL. 
+            Many believe that playing at home gives teams a significant edge due to factors like travel fatigue, 
+            crowd energy, and environmental familiarity. This project examines the impact of home-field advantage 
+            using data from 57 NFL seasons (1966-2023), analyzing over 14,000 games. The goal is to quantify the extent 
+            of home-field advantage and determine what factors contribute most to its effect on game outcomes.
+        </p>
     </div>
 
-    <!-- Main Content Area -->
-    <div class="project-main">
-        <div class="project-preview">
-            <img *ngIf="project?.image" [src]="project?.image" [alt]="project?.title" />
-            <div *ngIf="project?.liveDemo" class="project-demo">
-                <iframe [src]="project?.liveDemo" frameborder="0"></iframe>
-            </div>
-        </div>
-
-        <!-- Side Panel -->
-        <div class="project-info">
-            <h3>Technologies Used:</h3>
-            <ul>
-                <li *ngFor="let tech of project?.techStack">{{ tech }}</li>
-            </ul>
-
-            <div class="project-links">
-                <a *ngIf="project?.githubLink" [href]="project?.githubLink" target="_blank">View Code</a>
-                <a *ngIf="project?.liveDemo" [href]="project?.liveDemo" target="_blank">Live Demo</a>
-            </div>
-        </div>
+    <div class="results">
+        <h2>Results</h2>
+        <p>
+            • Overall Win Rate: Home teams won 58% of games, while away teams won 42%.<br>
+            • Point Margins: Home teams, on average, won by 2+ points more than away teams.<br>
+            • Travel Distance Impact: Teams traveling longer distances had lower win rates, 
+              with a sharp drop for very long travel (49.2%) compared to moderate travel (57–58%).<br>
+            • Playoff vs. Regular Season: Home-field advantage was even stronger in playoff games, 
+              with home teams winning 65.9% of the time and winning by an average of 6.15 points.<br>
+            • Rivalry Games: Home teams still had an advantage, but rivalry games were closer contests, 
+              with a significantly smaller win margin compared to non-rivalry games.<br>
+        </p>
     </div>
 </section>
 
+<!-- ✅ Normal Project Layout for Other Projects -->
+<!-- ✅ Normal Project Layout for Non-PDF Projects -->
+<ng-template #normalProjectLayout>
+    <section class="project-details">
+        <!-- ✅ Video Player for Non-PDF Projects -->
+        <div class="video-container" *ngIf="isVideoProject">
+            <video controls>
+                <source [src]="project?.videoUrl" type="video/mp4">
+                <source [src]="project?.videoUrl" type="video/quicktime">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- ✅ Overview Section -->
+    <div class="overview-tools-container">
+
+        <section class="overview">
+            <h2>Overview</h2>
+            <p>
+                The Investment App is designed to help users track and manage their investments efficiently. 
+                It provides real-time updates on stock prices, portfolio performance, and key financial insights. 
+                Built with Angular for the frontend and Python for data processing, the app integrates API calls 
+                to fetch financial data and visualize trends using Matplotlib.
+            </p>
+        </section>
+
+        <!-- ✅ Tools Section -->
+        <section class="tools">
+            <h2>Tools Used</h2>
+            <ul>
+                <li>Angular</li>
+                <li>TypeScript</li>
+                <li>HTML/CSS</li>
+                <li>VsCode</li>
+ 
+            </ul>
+        </section>
+    </div>
+    </section>
+</ng-template>
+
+
+
+
+<section class="github-section">
+    <h2>View the Code!</h2>
+    <a href="https://github.com/AlexDieterr/InvestmentAppAngular" target="_blank" class="github-btn">
+        <img src="/githublogo.png" alt="GitHub Logo" />
+    </a>
+</section>
 <app-contact></app-contact>
