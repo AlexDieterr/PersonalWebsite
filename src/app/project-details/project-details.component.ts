@@ -25,19 +25,19 @@ export class ProjectDetailsComponent {
   sections: { id: string; title: string; page: number }[] = [];
 
   toolLogos: { [key: string]: string } = {
-    'Angular': '/PersonalWebsite/public/icons8-angular-48.png',
-    'HTML': '/PersonalWebsite/public/icons8-html5-48.png',
-    'TypeScript': '/PersonalWebsite/public/icons8-typescript-48.png',
-    'Numpy': '/PersonalWebsite/public/icons8-numpy-48.png',
-    'VSCode': '/PersonalWebsite/public/icons8-vs-code-48.png',
-    'Node.js': '/PersonalWebsite/public/icons8-nodejs-48.png',
-    'Python': '/PersonalWebsite/public/icons8-python-48.png',
-    'Pandas': '/PersonalWebsite/public/icons8-pandas-48.png',
-    'Github': '/PersonalWebsite/public/icons8-github-48.png',
-    'Matplotlib': '/PersonalWebsite/public/Matplotlib.png',
-    'Pytorch': '/PersonalWebsite/public/pytorch.png',
-    'Scikit': '/PersonalWebsite/public/scikit.png',
-    'Scipy': '/PersonalWebsite/public/scipy.png'
+    'Angular': 'assets/icons8-angular-48.png',
+    'HTML': 'assets/icons8-html5-48.png',
+    'TypeScript': 'assets/icons8-typescript-48.png',
+    'Numpy': 'assets/icons8-numpy-48.png',
+    'VSCode': 'assets/icons8-vs-code-48.png',
+    'Node.js': 'assets/icons8-nodejs-48.png',
+    'Python': 'assets/icons8-python-48.png',
+    'Pandas': 'assets/icons8-pandas-48.png',
+    'Github': 'assets/icons8-github-48.png',
+    'Matplotlib': 'assets/Matplotlib.png',
+    'Pytorch': 'assets/pytorch.png',
+    'Scikit': 'assets/scikit.png',
+    'Scipy': 'assets/scipy.png'
   };
 
   projectData: Record<string, any> = {
@@ -59,7 +59,7 @@ export class ProjectDetailsComponent {
       title: 'Investment App',
       description: 'A web-based investment tracking app built with Angular.',
       techStack: ['Angular', 'TypeScript', 'HTML','VSCode'],
-      videoUrl: '/Investment_Recording.mov',  // ✅ MOV format (convert to MP4 if needed)
+      videoUrl: 'assets/Investment_Recording.mov',  // ✅ MOV format (convert to MP4 if needed)
       githubLink: 'https://github.com/AlexDieterr/InvestmentAppAngular',
       type: 'video'
     },
@@ -67,7 +67,7 @@ export class ProjectDetailsComponent {
       title: 'Task Management System',
       description: 'A full-stack task management system with authentication and real-time updates.',
       techStack: ['Angular', 'Node.js', 'TypeScript'],
-      videoUrl: '/TaskManagement.mov',  // ✅ Correct video file
+      videoUrl: 'assets/TaskManagement.mov',  // ✅ Correct video file
       githubLink: 'https://github.com/AlexDieterr/TasksManagementAngular',  // ✅ Correct GitHub repo
       type: 'video'
     },
