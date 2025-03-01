@@ -25,20 +25,19 @@ export class ProjectDetailsComponent {
   sections: { id: string; title: string; page: number }[] = [];
 
   toolLogos: { [key: string]: string } = {
-    'Angular': '/icons8-angular-48.png',
-    'HTML': '/icons8-html5-48.png',
-    'TypeScript': '/icons8-typescript-48.png',
-    'Numpy': '/icons8-numpy-48.png',
-    'VSCode': '/icons8-vs-code-48.png',
-    'Node.js': '/icons8-nodejs-48.png',
-    'Python': '/icons8-python-48.png',
-    'Pandas':'/icons8-pandas-48.png',
-    'Github':'/icons8-python-48.png',
-    'Matplotlib':'/Matplotlib.png',
-    'Pytorch':'/pytorch.png',
-    'Scikit':'/scikit.png',
-    'Scipy':'/scipy.png'
-
+    'Angular': '/PersonalWebsite/public/icons8-angular-48.png',
+    'HTML': '/PersonalWebsite/public/icons8-html5-48.png',
+    'TypeScript': '/PersonalWebsite/public/icons8-typescript-48.png',
+    'Numpy': '/PersonalWebsite/public/icons8-numpy-48.png',
+    'VSCode': '/PersonalWebsite/public/icons8-vs-code-48.png',
+    'Node.js': '/PersonalWebsite/public/icons8-nodejs-48.png',
+    'Python': '/PersonalWebsite/public/icons8-python-48.png',
+    'Pandas': '/PersonalWebsite/public/icons8-pandas-48.png',
+    'Github': '/PersonalWebsite/public/icons8-github-48.png',
+    'Matplotlib': '/PersonalWebsite/public/Matplotlib.png',
+    'Pytorch': '/PersonalWebsite/public/pytorch.png',
+    'Scikit': '/PersonalWebsite/public/scikit.png',
+    'Scipy': '/PersonalWebsite/public/scipy.png'
   };
 
   projectData: Record<string, any> = {
