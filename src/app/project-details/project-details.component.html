@@ -61,47 +61,59 @@
 </section>
 
 <!-- ✅ Normal Project Layout for Other Projects -->
-<!-- ✅ Normal Project Layout for Non-PDF Projects -->
+
 <ng-template #normalProjectLayout>
-    <section class="project-details">
-        <!-- ✅ Video Player for Non-PDF Projects -->
-        <div class="video-container" *ngIf="isVideoProject">
-            <video controls>
-                <source [src]="project?.videoUrl" type="video/mp4">
-                <source [src]="project?.videoUrl" type="video/quicktime">
-                Your browser does not support the video tag.
-            </video>
-        </div>
+  <section class="project-details" >
 
-        <!-- ✅ Overview Section -->
-    <div class="overview-tools-container">
+    <div *ngIf="project.type === 'property'" class = "property-project">
+        <p>{{project.description}}</p>
+        <p>Currently in Progress...</p>
+        <p>Look at my other projects!</p>
+      </div>
 
-        <section class="overview">
-            <h2>Overview</h2>
-            <p>
-                The Investment App is designed to help users track and manage their investments efficiently. 
-                It provides real-time updates on stock prices, portfolio performance, and key financial insights. 
-                Built with Angular for the frontend and Python for data processing, the app integrates API calls 
-                to fetch financial data and visualize trends using Matplotlib.
-            </p>
-        </section>
-
-        <!-- ✅ Tools Section -->
-        <section class="tools">
-            <h2>Tools Used</h2>
-            <ul>
-                <li>Angular</li>
-                <li>TypeScript</li>
-                <li>HTML/CSS</li>
-                <li>VsCode</li>
- 
-            </ul>
-        </section>
+    <!-- Screen Recording / Video Player -->
+    <div class="video-container" *ngIf="isVideoProject">
+      <video controls>
+        <source [src]="project?.videoUrl" type="video/mp4" />
+        <source [src]="project?.videoUrl" type="video/quicktime" />
+        Your browser does not support the video tag.
+      </video>
     </div>
-    </section>
+
+    <div *ngIf="project.type === 'personal'" class="personal-website">
+        <p>{{ project.description }}</p>
+        <p>{{project.contactMessage}}</p>
+      </div>
+
+    <!-- Overview and Tools Sections -->
+    <div class="overview-tools-container">
+      <!-- Overview Section -->
+      <section class="overview" *ngIf="project.title === 'Investment App'">
+        <h2>Overview</h2>
+        <p>
+            The Investment App is a simple yet powerful tool designed to help users estimate their potential returns based on key investment factors. This demo version focuses on calculating future gains using an initial investment, monthly contributions, and a given interest rate over time. With a clean and intuitive interface, users can quickly input their values and see how their investments grow. While it doesn’t include real-time stock tracking, this app provides a straightforward way to visualize the impact of compound interest and smart financial planning.
+        </p>
+      </section>
+      <section class="overview" *ngIf="project.title === 'Task Management System'">
+        <h2>Overview</h2>
+        <p>
+            The Task Management App is a  tool designed for  team collaboration and productivity. It allows users to add, assign, edit, and complete tasks while managing multiple team members effortlessly. With specific controls, you can track progress, update responsibilities, and ensure nothing falls through the cracks. Whether you’re coordinating a small group or overseeing a large project, this system keeps everyone on the same page, making task management efficient and hassle-free.
+        </p>
+      </section>
+
+      <!-- Tools Section for Investment App and Task Management System -->
+<section class="tools" *ngIf="(project.title === 'Investment App' || project.title === 'Task Management System')">
+    <h2>Tools Used</h2>
+    <div class="tool-logos">
+      <img *ngFor="let tool of project.techStack"
+           [src]="toolLogos[tool] || '/assets/logos/default.png'"
+           [alt]="tool"
+           [title]="tool">
+    </div>
+  </section>
+    </div>
+  </section>
 </ng-template>
-
-
 
 
 <section class="github-section">

@@ -23,25 +23,39 @@ export class HeaderComponent {
   }
 
   goHome() {
-    console.log('hello')
     this.router.navigate(['/']);
   }
+
+  /**
+   * Navigates to the home page if needed, then scrolls to the element with the provided ID.
+   */
+  scrollToSection(sectionId: string) {
+    if (this.router.url !== '/') {
+      this.router.navigate(['/']).then(() => {
+        setTimeout(() => {
+          const section = document.getElementById(sectionId);
+          if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100); // Adjust delay if needed
+      });
+    } else {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
+
   scrollToContact() {
-    const contactSection = document.getElementById('contact'); // Find the contact section
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to it
-    }
+    this.scrollToSection('contact');
   }
+
   scrollToAbout() {
-    const aboutSection = document.getElementById('about'); // Find the contact section
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to it
-    }
+    this.scrollToSection('about');
   }
+
   scrollToProjects() {
-    const projectsSection = document.getElementById('projects'); // Find the contact section
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to it
-    }
+    this.scrollToSection('projects');
   }
 }
