@@ -1,0 +1,70 @@
+{
+  "hash": "80532300",
+  "configHash": "75c72292",
+  "lockfileHash": "9e2926d6",
+  "browserHash": "e57066c9",
+  "optimized": {
+    "@angular/common": {
+      "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
+      "file": "@angular_common.js",
+      "fileHash": "786fc93d",
+      "needsInterop": false
+    },
+    "@angular/core": {
+      "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
+      "file": "@angular_core.js",
+      "fileHash": "f4b34c11",
+      "needsInterop": false
+    },
+    "@angular/platform-browser": {
+      "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+      "file": "@angular_platform-browser.js",
+      "fileHash": "cb922edd",
+      "needsInterop": false
+    },
+    "@angular/router": {
+      "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
+      "file": "@angular_router.js",
+      "fileHash": "b88b0d58",
+      "needsInterop": false
+    },
+    "ng2-pdf-viewer": {
+      "src": "../../../../../../node_modules/ng2-pdf-viewer/fesm2022/ng2-pdf-viewer.mjs",
+      "file": "ng2-pdf-viewer.js",
+      "fileHash": "d04c9e36",
+      "needsInterop": false
+    },
+    "ngx-extended-pdf-viewer": {
+      "src": "../../../../../../node_modules/ngx-extended-pdf-viewer/fesm2022/ngx-extended-pdf-viewer.mjs",
+      "file": "ngx-extended-pdf-viewer.js",
+      "fileHash": "bfc09a1d",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "https-AD7FTLRD": {
+      "file": "https-AD7FTLRD.js"
+    },
+    "url-YLH75QAX": {
+      "file": "url-YLH75QAX.js"
+    },
+    "chunk-E6RRQ67V": {
+      "file": "chunk-E6RRQ67V.js"
+    },
+    "chunk-MWHVE4U4": {
+      "file": "chunk-MWHVE4U4.js"
+    },
+    "chunk-QKDQFIMI": {
+      "file": "chunk-QKDQFIMI.js"
+    },
+    "fs-IBCNYVOG": {
+      "file": "fs-IBCNYVOG.js"
+    },
+    "http-XVCDCVXP": {
+      "file": "http-XVCDCVXP.js"
+    },
+    "chunk-ONSPR7LY": {
+      "file": "chunk-ONSPR7LY.js"
+    }
+  }
+}
