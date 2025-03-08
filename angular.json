@@ -24,7 +24,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "baseHref": "/PersonalWebsite/"  
+
           },
           "configurations": {
             "production": {
