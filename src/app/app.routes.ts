@@ -1,8 +1,11 @@
 import { Routes } from '@angular/router';
-import { HeroComponent } from './hero/hero.component';
 import { ContactComponent } from './contact/contact.component';
+import { HomeComponent } from './home/home.component';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
 
 export const routes: Routes = [
-    { path: '', component: HeroComponent },
-    { path: 'contact', component: ContactComponent } 
+    { path: '', component: HomeComponent },
+    { path: 'contact', component: ContactComponent },
+    { path: 'projects/:id', component: ProjectDetailsComponent },
+    { path: '**', redirectTo: '' }
   ];
