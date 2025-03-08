@@ -6,7 +6,6 @@
     background-color: #f4f4f4;
 }
 
-/* Top Content: Text & Main Images Side by Side */
 .content {
     display: flex;
     justify-content: space-between;
@@ -15,7 +14,6 @@
     width: 100%;
 }
 
-/* About Me Text */
 .about-text {
     flex: 1;
     max-width: 45%;
@@ -24,10 +22,9 @@
     line-height: 1.6;
 }
 
-/* Style the About Me Heading like the Projects Title */
 .about-text h2 {
     text-align: center;
-    font-size: 48px;  /* Increase size similar to Projects title */
+    font-size: 48px;  
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -39,7 +36,6 @@
     animation: fadeInSlide 1s ease-out forwards;
 }
 
-/* Fade-in animation for the heading */
 @keyframes fadeInSlide {
     from {
         opacity: 0;
@@ -51,7 +47,6 @@
     }
 }
 
-/* Main Images on Right Side */
 .main-images {
     flex: 1;
     max-width: 50%;
@@ -67,7 +62,6 @@
     object-fit: contain;
 }
 
-/* Extra Images Below */
 .extra-images {
     display: flex;
     flex-wrap: wrap;
@@ -83,7 +77,6 @@
     object-fit: contain;
 }
 
-/* Underline animation */
 @keyframes underline-slide-in {
     from {
         transform: scaleX(0);
@@ -97,10 +90,9 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Ensures everything is centered */
+    align-items: center; 
 }
 
-/* The existing .underline rule – unchanged */
 .underline {
     width: 260px;
     height: 4px;

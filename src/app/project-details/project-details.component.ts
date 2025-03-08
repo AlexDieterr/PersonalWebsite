@@ -59,7 +59,7 @@ export class ProjectDetailsComponent {
       title: 'Investment App',
       description: 'A web-based investment tracking app built with Angular.',
       techStack: ['Angular', 'TypeScript', 'HTML','VSCode'],
-      videoUrl: 'assets/Investment_Recording.mov',  // ✅ MOV format (convert to MP4 if needed)
+      videoUrl: 'assets/Investment_Recording.mov',  
       githubLink: 'https://github.com/AlexDieterr/InvestmentAppAngular',
       type: 'video'
     },
@@ -67,8 +67,8 @@ export class ProjectDetailsComponent {
       title: 'Task Management System',
       description: 'A full-stack task management system with authentication and real-time updates.',
       techStack: ['Angular', 'Node.js', 'TypeScript'],
-      videoUrl: 'assets/TaskManagement.mov',  // ✅ Correct video file
-      githubLink: 'https://github.com/AlexDieterr/TasksManagementAngular',  // ✅ Correct GitHub repo
+      videoUrl: 'assets/TaskManagement.mov', 
+      githubLink: 'https://github.com/AlexDieterr/TasksManagementAngular',  
       type: 'video'
     },
     project5: {
@@ -76,7 +76,7 @@ export class ProjectDetailsComponent {
       description: 'Hi there! This project is actually what you are currently on! I built this website from scratch on VsCode to showcase my projects, skills, and experience. It’s a clean, easy-to-navigate portfolio that gives a quick look at what I’ve built and what I’m working on. If you want to look at the code behind how I built this, scroll down a bit and click the GitHub button!',
       contactMessage: 'If you have any questions, feel free to contact me!',
       techStack: ['Angular', 'Node.js', 'TypeScript'],
-      githubLink: 'https://github.com/AlexDieterr/GithubioWebsite',  // ✅ Correct GitHub repo
+      githubLink: 'https://github.com/AlexDieterr/GithubioWebsite',  
       type: 'personal'
     }
   };
@@ -102,7 +102,7 @@ export class ProjectDetailsComponent {
         } else if (this.project.type === 'video') {
           this.isVideoProject = true;
         }
-        // For 'personal', we don't set either flag.
+        
       }
     });
   
@@ -122,7 +122,6 @@ export class ProjectDetailsComponent {
     }
   }
 
-  /* ✅ Toggle Fullscreen Mode */
   toggleFullScreen() {
     const elem = this.pdfContainer.nativeElement;
     if (!this.isFullscreen) {

@@ -26,9 +26,7 @@ export class HeaderComponent {
     this.router.navigate(['/']);
   }
 
-  /**
-   * Navigates to the home page if needed, then scrolls to the element with the provided ID.
-   */
+
   scrollToSection(sectionId: string) {
     if (this.router.url !== '/') {
       this.router.navigate(['/']).then(() => {
@@ -37,7 +35,7 @@ export class HeaderComponent {
           if (section) {
             section.scrollIntoView({ behavior: 'smooth' });
           }
-        }, 100); // Adjust delay if needed
+        }, 100); 
       });
     } else {
       const section = document.getElementById(sectionId);

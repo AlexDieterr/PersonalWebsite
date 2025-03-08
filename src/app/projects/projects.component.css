@@ -51,7 +51,7 @@
     margin: 0 auto;
 }
 
-/* Limit to max 3 projects per row */
+
 @media (min-width: 900px) {
     .projects-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -119,9 +119,9 @@
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    background: rgba(0, 0, 0, 0.3); /* Lighter background */
-    backdrop-filter: blur(3px); /* Softer blur */
-    color: #333; /* Darker text for better readability */
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+    color: #333;
     font-size: 1.2rem;
     text-align: center;
     padding: 10px 0;
@@ -137,7 +137,7 @@
 
 .projects-title {
     text-align: center;
-    font-size: 48px;           /* Increase the size for impact */
+    font-size: 48px;          
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -151,7 +151,7 @@
     animation: fadeInSlide 1s ease-out forwards;
   }
   
-  /* Optional: animated underline */
+ 
   .projects-title::after {
     content: "";
     display: block;
@@ -163,7 +163,7 @@
     animation: underlineGrow 1s ease-out forwards 0.8s;
   }
   
-  /* Fade in + slide animation for the title */
+ 
   @keyframes fadeInSlide {
     from {
       opacity: 0;
@@ -175,7 +175,7 @@
     }
   }
   
-  /* Underline growth animation */
+ 
   @keyframes underlineGrow {
     from {
       width: 0;

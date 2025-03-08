@@ -5,77 +5,77 @@
     padding: 8rem 2rem;
     text-align: center;
     background-color: white;
-    height: auto; /* Full viewport height */
+    height: auto;
   }
   
   .intro {
-    flex: 1; /* Take up half the width */
+    flex: 1;
   }
   
-  /* "Hello, I'm" styling */
+ 
   .small-text {
     font-size: 1.2rem;
-    color: #555; /* Subtle color for "Hello, I'm" */
+    color: #555;
     margin-bottom: 0.5rem;
   }
   
-  /* Name styling */
+ 
   h1 {
-    font-size: 3rem; /* Larger text for your name */
+    font-size: 3rem;
     font-weight: bold;
     margin: 0;
   }
   
-  /* Name link styling */
+ 
   .name-link {
-    color: black; /* Default color for your name */
-    text-decoration: none; /* No underline by default */
+    color: black;
+    text-decoration: none;
   }
   
   .name-link:hover {
-    color: #0078d7; /* Change color when hovered */
+    color: #0078d7;
     cursor: pointer;
   }
   
   .name-link:active {
-    color: #005bb5; /* Darker color on click */
+    color: #005bb5;
   }
   
-  /* Title styling */
+ 
   .title {
-    font-size: 1.5rem; /* Smaller than your name, bigger than "Hello, I'm" */
+    font-size: 1.5rem;
     color: #666;
     font-weight: bold;
     margin-top: 0.5rem;
     margin-bottom: 1.5rem;
   }
   
-  /* Contact button */
+ 
   .contact-btn {
-    padding: 0.8rem 2rem; /* Extra padding for a rounder shape */
-    background: linear-gradient(90deg, #90cbf8, #3a85b7); /* Lighter blue gradient */
-    color: white; /* White text color */
-    border: none; /* Remove border */
-    border-radius: 50px; /* Completely round edges */
-    font-size: 1rem; /* Font size */
-    cursor: pointer; /* Pointer cursor */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transitions */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 0.8rem 2rem;
+    background: linear-gradient(90deg, #90cbf8, #3a85b7);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
   
-  /* Hover effect */
+ 
   .contact-btn:hover {
-    transform: scale(1.05); /* Slight zoom effect */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
   }
   
-  /* Active effect (on click) */
+ 
   .contact-btn:active {
-    transform: scale(0.98); /* Slight shrink effect */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Softer shadow when clicked */
+    transform: scale(0.98);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   }
   
-  /* Photo styling */
+ 
   .photo {
     flex: 1;
     display: flex;
@@ -86,49 +86,49 @@
   .photo img {
     width: 400px;
     height: 400px;
-    border-radius: 50%; /* Make the image circular */
+    border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border: 4px solid white; /* Optional border */
+    border: 4px solid white;
   }
 
   .buttons {
     display: flex;
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: center; /* Center buttons horizontally */
-    gap: 10px; /* Space between buttons */
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
-/* Apply the same styles to both <a> and <button> */
+
 .download-btn, .contact-btn {
     display: inline-block;
-    min-width: 150px; /* Adjust the width to be less wide */
-    background: linear-gradient(90deg, #90cbf8, #3a85b7); /* Same gradient */
-    color: white; /* White text */
+    min-width: 150px;
+    background: linear-gradient(90deg, #90cbf8, #3a85b7);
+    color: white;
     border: none;
-    border-radius: 50px; /* Rounded edges */
+    border-radius: 50px;
     font-size: 1rem;
     text-align: center;
-    text-decoration: none; /* Remove underline */
+    text-decoration: none;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .download-btn{
-  padding: 0.7rem .2rem; /* Reduce padding for less side space */
+  padding: 0.7rem .2rem;
 }
 .contact-btn{
-  padding: 0.7rem 1rem; /* Reduce padding for less side space */
+  padding: 0.7rem 1rem;
 
 }
 
-/* Hover effect */
+
 .download-btn:hover, .contact-btn:hover {
     transform: scale(1.05);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Active (click) effect */
+
 .download-btn:active, .contact-btn:active {
     transform: scale(0.98);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -140,12 +140,12 @@
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 3px solid black; /* Simulated typing cursor */
+  border-right: 3px solid black;
   animation: typing 2s steps(30, end) forwards, 
              blinkCursor 0.75s step-end infinite;
 }
 
-/* Typing effect */
+
 @keyframes typing {
   from {
       width: 0;
@@ -155,14 +155,14 @@
   }
 }
 
-/* Blinking cursor effect */
+
 @keyframes blinkCursor {
   50% {
       border-color: transparent;
   }
 }
 
-/* Hide cursor completely after typing */
+
 .name.typing-done {
   border-right: none;
 }

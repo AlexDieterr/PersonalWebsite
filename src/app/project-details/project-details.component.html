@@ -1,13 +1,10 @@
 <app-header></app-header>
 
-<!-- ✅ Page Title (Project Title) -->
 <div class="page-title">
     <h1>{{ project?.title }}</h1>
 </div>
 
-<!-- ✅ If project is Home Field Advantage, show PDF Viewer -->
 <div *ngIf="isHomeFieldAdvantage; else normalProjectLayout" class="project-container">
-    <!-- Sidebar Navigation -->
     <aside class="sidebar">
         <ul>
             <li *ngFor="let section of sections"
@@ -18,7 +15,6 @@
         </ul>
     </aside>
 
-    <!-- ✅ PDF Viewer with Fullscreen Option -->
     <div class="pdf-container" #pdfContainer>
         <button class="fullscreen-btn" (click)="toggleFullScreen()">
             {{ isFullscreen ? '⨉' : '⤢' }}
@@ -32,7 +28,6 @@
     </div>
 </div>
 
-<!-- ✅ Overview & Results Section (Only for Home Field Advantage) -->
 <section *ngIf="isHomeFieldAdvantage" class="overview-results">
     <div class="overview">
         <h2>Overview</h2>
@@ -65,8 +60,6 @@
 </section>
 
 
-<!-- ✅ Normal Project Layout for Other Projects -->
-
 <ng-template #normalProjectLayout>
   <section class="project-details" >
 
@@ -76,7 +69,6 @@
         <p>Look at my other projects!</p>
       </div>
 
-    <!-- Screen Recording / Video Player -->
     <div class="video-container" *ngIf="isVideoProject">
       <video controls>
         <source [src]="project?.videoUrl" type="video/mp4" />
@@ -90,9 +82,7 @@
         <p>{{project.contactMessage}}</p>
       </div>
 
-    <!-- Overview and Tools Sections -->
     <div class="overview-tools-container">
-      <!-- Overview Section -->
       <section class="overview" *ngIf="project.title === 'Investment App'">
         <h2>Overview</h2>
         <p>
