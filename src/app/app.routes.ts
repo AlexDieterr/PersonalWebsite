@@ -7,5 +7,6 @@ export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'contact', component: ContactComponent },
     { path: 'projects/:id', component: ProjectDetailsComponent },
+    { path: 'PersonalWebsite', component: HomeComponent },
     { path: '**', redirectTo: '' }
   ];
