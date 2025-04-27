@@ -38,3 +38,24 @@
     object-fit: contain; 
   }
 
+/* Mobile Styles */
+@media (max-width: 480px) {
+  .contact {
+    padding: 30px 15px;
+  }
+
+  .contact-title {
+    font-size: 26px;
+    margin-bottom: 18px;
+  }
+
+  .contact-buttons {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .contact-buttons img {
+    width: 45px;
+    height: 45px;
+  }
+}

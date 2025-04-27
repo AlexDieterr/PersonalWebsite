@@ -184,3 +184,45 @@
       width: 50%;
     }
   }
+  /* Mobile CSS */
+@media (max-width: 768px) {
+    .projects {
+      padding: 0rem 1rem;
+    }
+  
+    .projects-title {
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+  
+    .projects-subtitle {
+      font-size: 1.1rem;
+    }
+  
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      padding: 0 10px;
+    }
+  
+    .project-card {
+      padding: 8px;
+    }
+  
+    .project-thumbnail {
+      height: 200px;
+    }
+  
+    .project-title {
+      font-size: 1.3rem;
+    }
+  
+    .project-tech {
+      font-size: 0.9rem;
+    }
+  
+    .project-title-bottom {
+      font-size: 1rem;
+      padding: 8px 0;
+    }
+  }

@@ -104,3 +104,49 @@
     transform: scaleX(0);
     animation: underline-slide-in 0.8s ease-out forwards;
 }
+
+/* Mobile Styles */
+@media (max-width: 480px) {
+    .about-me {
+      padding: 2rem 1rem;
+    }
+  
+    .content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .about-text {
+      max-width: 100%;
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+  
+    .about-text h2 {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+  
+    .main-images {
+      flex-direction: column;
+      align-items: center;
+      max-width: 100%;
+      gap: 10px;
+    }
+  
+    .main-images img {
+      max-width: 250px;
+    }
+  
+    .extra-images img {
+      width: 150px;
+    }
+  
+    .underline {
+      width: 180px;
+      margin-left: 0;
+      padding-left: 0;
+    }
+  }
