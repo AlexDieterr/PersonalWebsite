@@ -37,25 +37,35 @@ export class ProjectDetailsComponent {
     'Matplotlib': 'assets/Matplotlib.png',
     'Pytorch': 'assets/pytorch.png',
     'Scikit': 'assets/scikit.png',
-    'Scipy': 'assets/scipy.png'
+    'Scipy': 'assets/scipy.png',
+    'SAS': 'assets/sas.png',
+    'PowerBi': 'assets/icons8-power-bi-48.png',
+    'Excel': 'assets/icons8-excel-48.png'
   };
 
   projectData: Record<string, any> = {
     project1: {
+      title: 'Pediatric Dashboard (Kaiser Permanente)',
+      description: 'A dashboard I created while working with Kaiser Permanente as a Data Scientist Intern',
+      techStack: ['PowerBi', 'Excel', 'SAS', 'Python'],
+      videoUrl: 'assets/NSQIP_Dashboard.mp4',
+      type: 'video'
+    },
+    project2: {
       title: 'Home Field Advantage',
       description: 'An analysis of home-field advantage in professional sports using statistical modeling.',
       techStack: ['Python', 'Pandas', 'Matplotlib','VSCode'],
       pdfUrl: '/assets/home-field-advantage.pdf',
       type: 'pdf'
     },
-    project2: {
+    project3: {
       title: 'Property Price Predictor',
       description: 'A machine learning model to predict property prices.',
       techStack: ['Python', 'Scikit', 'Pytorch', 'Pandas', 'Numpy', 'Scipy','VSCode'],
       githubLink: 'https://github.com/AlexDieterr/NewPropertyPrice',
       type: 'property'
     },
-    project3: {
+    project4: {
       title: 'Investment App',
       description: 'A web-based investment tracking app built with Angular.',
       techStack: ['Angular', 'TypeScript', 'HTML','VSCode'],
@@ -63,7 +73,7 @@ export class ProjectDetailsComponent {
       githubLink: 'https://github.com/AlexDieterr/InvestmentAppAngular',
       type: 'video'
     },
-    project4: {
+    project5: {
       title: 'Task Management System',
       description: 'A full-stack task management system with authentication and real-time updates.',
       techStack: ['Angular', 'Node.js', 'TypeScript'],
@@ -71,7 +81,7 @@ export class ProjectDetailsComponent {
       githubLink: 'https://github.com/AlexDieterr/TasksManagementAngular',  
       type: 'video'
     },
-    project5: {
+    project6: {
       title: 'Personal Website',
       description: 'Hi there! This project is actually what you are currently on! I built this website from scratch on VsCode to showcase my projects, skills, and experience. It’s a clean, easy-to-navigate portfolio that gives a quick look at what I’ve built and what I’m working on. If you want to look at the code behind how I built this, scroll down a bit and click the GitHub button!',
       contactMessage: 'If you have any questions, feel free to contact me!',

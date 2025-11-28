@@ -95,39 +95,35 @@
             The Task Management App is a  tool designed for  team collaboration and productivity. It allows users to add, assign, edit, and complete tasks while managing multiple team members effortlessly. With specific controls, you can track progress, update responsibilities, and ensure nothing falls through the cracks. Whether you’re coordinating a small group or overseeing a large project, this system keeps everyone on the same page, making task management efficient and hassle-free.
         </p>
       </section>
+      <section class="overview" *ngIf="project.title === 'Pediatric Dashboard (Kaiser Permanente)'">
+        <h2>Overview</h2>
+        <p>
+          The Pediatric Dashboard is a project I built during my time as a Data Scientist Intern at Kaiser Permanente. It’s an interactive dashboard that tracks key pediatric surgical metrics and helps clinical teams monitor trends in patient outcomes. I organized and cleaned ACS NSQIP data, (American College of Surgeons National Surgical Quality  Improvement Program) built the visuals, and structured everything so physicians and analysts can quickly find what they need. The goal was to make the data easier to understand and to support better decision-making in real clinical settings. One of the highlights of this project was the Opioid Reduction Project, which analyzed the frequency and dosage of opioids prescribed post-surgery, helping identify what doctors at what Kaiser Permanente Locations were overprescribing and where improvements could be made.
 
-      <section class="tools" *ngIf="project.title === 'Investment App' || project.title === 'Task Management System'"
-      [ngClass]="{
-        'tools-standard': project.title === 'Investment App' || project.title === 'Task Management System',
-      }">
-      <h2>Tools Used</h2>
-      <div class="tool-logos">
-        <img *ngFor="let tool of project.techStack"
-             [src]="toolLogos[tool] || '/assets/logos/default.png'"
-             [alt]="tool"
-             [title]="tool">
-      </div>
+        </p>
+      </section>
+
+      <section class="tools"
+        *ngIf="project.title === 'Investment App'
+            || project.title === 'Task Management System'
+            || project.title === 'Pediatric Dashboard (Kaiser Permanente)'">
+        
+        <h2>Tools Used</h2>
+        <div class="tool-logos">
+            <img *ngFor="let tool of project.techStack"
+                [src]="toolLogos[tool] || '/assets/logos/default.png'"
+                [alt]="tool"
+                [title]="tool">
+        </div>
     </section>
 
         </div>
 </section>
 </ng-template>
 
-<section class="tools" *ngIf=" project.title === 'Home Field Advantage' || project.title === 'Property Price Predictor' || 
-project.title === 'Personal Website'"
-      [ngClass]="{
-        'tools-alt': project.title === 'Home Field Advantage' || project.title === 'Property Price Predictor' || project.title === 'Personal Website'
-      }">
-      <h2>Tools Used</h2>
-      <div class="tool-logos">
-        <img *ngFor="let tool of project.techStack"
-             [src]="toolLogos[tool] || '/assets/logos/default.png'"
-             [alt]="tool"
-             [title]="tool">
-      </div>
-    </section>
 
-<section class="github-section">
+
+<section class="github-section" *ngIf="project.title !== 'Pediatric Dashboard (Kaiser Permanente)'">
     <h2>View the Code!</h2>
     <a href="https://github.com/AlexDieterr/InvestmentAppAngular" target="_blank" class="github-btn">
         <img src="assets/githublogo.png" alt="GitHub Logo" />
