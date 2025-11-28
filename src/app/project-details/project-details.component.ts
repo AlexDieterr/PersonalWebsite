@@ -48,7 +48,7 @@ export class ProjectDetailsComponent {
       title: 'Pediatric Dashboard (Kaiser Permanente)',
       description: 'A dashboard I created while working with Kaiser Permanente as a Data Scientist Intern',
       techStack: ['PowerBi', 'Excel', 'SAS', 'Python'],
-      videoUrl: 'assets/NSQIP_Dashboard.mp4',
+      videoUrl: 'assets/NSQIP_PEDS_Dashboard.mp4',
       type: 'video'
     },
     project2: {
