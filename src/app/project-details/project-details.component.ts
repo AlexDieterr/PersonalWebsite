@@ -16,6 +16,8 @@ export class ProjectDetailsComponent {
   projectId: string | null = '';
   project: any = null;
   isHomeFieldAdvantage = false;
+  isPropertyPrice = false;
+  isPdfProject = false;
   isVideoProject = false;
   currentPage: number | null = 1;
   isFullscreen = false;
@@ -52,18 +54,39 @@ export class ProjectDetailsComponent {
       type: 'video'
     },
     project2: {
-      title: 'Home Field Advantage',
-      description: 'An analysis of home-field advantage in professional sports using statistical modeling.',
-      techStack: ['Python', 'Pandas', 'Matplotlib','VSCode'],
-      pdfUrl: '/assets/home-field-advantage.pdf',
-      type: 'pdf'
-    },
-    project3: {
       title: 'Property Price Predictor',
       description: 'A machine learning model to predict property prices.',
-      techStack: ['Python', 'Scikit', 'Pytorch', 'Pandas', 'Numpy', 'Scipy','VSCode'],
+      techStack: ['Python', 'Scikit', 'Matplotlib', 'Pandas', 'Numpy', 'Scipy', 'VSCode'],
       githubLink: 'https://github.com/AlexDieterr/NewPropertyPrice',
-      type: 'property'
+      pdfUrl: '/assets/propertyprice.pdf',
+      type: 'pdf',
+      sections: [
+        { title: 'Introduction', page: 1 },
+        { title: 'Dataset Overview', page: 2 },
+        { title: 'Exploratory Data Analysis', page: 4 },
+        { title: 'Feature Engineering', page: 7 },
+        { title: 'Modeling', page: 10 },
+        { title: 'Model Evaluation', page: 14 },
+        { title: 'Predictions', page: 17 },
+        { title: 'Conclusion', page: 20 }
+      ]
+    },
+    project3: {
+      title: 'Home Field Advantage',
+      description: 'An analysis of home-field advantage in professional sports using statistical modeling.',
+      techStack: ['Python', 'Pandas', 'Matplotlib', 'VSCode'],
+      pdfUrl: '/assets/home-field-advantage.pdf',
+      type: 'pdf',
+      githubLink: 'https://github.com/AlexDieterr/home-field-advantage',
+      sections: [
+        { title: 'Introduction', page: 1 },
+        { title: 'Data', page: 2 },
+        { title: 'Weather and Familiarity', page: 9 },
+        { title: 'Exploratory Data Analysis', page: 12 },
+        { title: 'Visualizations and Insights', page: 17 },
+        { title: 'Playoffs vs Regular Season', page: 24 },
+        { title: 'Rivalry Game Analysis', page: 28 }
+      ]
     },
     project4: {
       title: 'Investment App',
@@ -99,17 +122,14 @@ export class ProjectDetailsComponent {
         this.project = this.projectData[this.projectId];
   
         if (this.project.type === 'pdf') {
-          this.isHomeFieldAdvantage = true;
-          this.sections = [
-            { id: 'intro', title: 'Introduction', page: 1 },
-            { id: 'data', title: 'Data', page: 2 },
-            { id: 'weather', title: 'Weather & Familiarity', page: 9 },
-            { id: 'explore', title: 'Exploratory Data Analysis', page: 12 },
-            { id: 'viz', title: 'Visualizations & Insights', page: 17 },
-            { id: 'playoff', title: 'Playoffs vs. Regular Season', page: 24 },
-            { id: 'rivalry', title: 'Rivalry Game Analysis', page: 28 },
-          ];
-        } else if (this.project.type === 'video') {
+          if (this.projectId === 'project2') {
+            this.isPropertyPrice = true;
+          } else if (this.projectId === 'project3') {
+            this.isHomeFieldAdvantage = true;
+          }
+        this.isPdfProject = true;
+        this.sections = this.project.sections || [];
+      } else if (this.project.type === 'video') {
           this.isVideoProject = true;
         }
         

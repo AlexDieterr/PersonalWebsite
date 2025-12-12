@@ -4,7 +4,7 @@
     <h1>{{ project?.title }}</h1>
 </div>
 
-<div *ngIf="isHomeFieldAdvantage; else normalProjectLayout" class="project-container">
+<div *ngIf="isPdfProject; else normalProjectLayout" class="project-container">
     <aside class="sidebar">
         <ul>
             <li *ngFor="let section of sections"
@@ -28,7 +28,32 @@
     </div>
 </div>
 
-<section *ngIf="isHomeFieldAdvantage" class="overview-results">
+
+
+<section *ngIf="isPdfProject && isPropertyPrice" class="overview-results">
+    <div class="overview">
+        <h2>Overview</h2>
+        <p>
+            Property price overview
+        </p>
+    </div>
+
+    <div class="results">
+        <h2>Results</h2>
+        <p>
+            • Overall Win Rate: Home teams won 58% of games, while away teams won 42%.<br>
+            • Point Margins: Home teams, on average, won by 2+ points more than away teams.<br>
+            • Travel Distance Impact: Teams traveling longer distances had lower win rates, 
+              with a sharp drop for very long travel (49.2%) compared to moderate travel (57–58%).<br>
+            • Playoff vs. Regular Season: Home-field advantage was even stronger in playoff games, 
+              with home teams winning 65.9% of the time and winning by an average of 6.15 points.<br>
+            • Rivalry Games: Home teams still had an advantage, but rivalry games were closer contests, 
+              with a significantly smaller win margin compared to non-rivalry games.<br>
+        </p>
+    </div>
+</section>
+
+<section *ngIf="isPdfProject && isHomeFieldAdvantage" class="overview-results">
     <div class="overview">
         <h2>Overview</h2>
         <p>
@@ -53,21 +78,11 @@
               with a significantly smaller win margin compared to non-rivalry games.<br>
         </p>
     </div>
-
-
-
-
 </section>
 
 
-<ng-template #normalProjectLayout>
+<ng-template #normalProjectLayout> <!-- Non pdf projects -->
   <section class="project-details" >
-
-    <div *ngIf="project.type === 'property'" class = "property-project">
-        <p>{{project.description}}</p>
-        <p>Currently in Progress...</p>
-        <p>Look at my other projects!</p>
-      </div>
 
     <div class="video-container" *ngIf="isVideoProject">
       <video controls>
