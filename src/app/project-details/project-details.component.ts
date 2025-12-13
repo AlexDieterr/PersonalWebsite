@@ -22,6 +22,7 @@ export class ProjectDetailsComponent {
   isTraffic = false;
   currentPage: number | null = 1;
   isFullscreen = false;
+  
 
   @ViewChild('pdfContainer', { static: false }) pdfContainer!: ElementRef<HTMLElement>;
 

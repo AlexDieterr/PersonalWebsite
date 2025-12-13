@@ -14,7 +14,7 @@ export class ProjectsComponent {
   constructor(private router: Router) {}
 
   projects = [
-    {id: 'project1',title: 'Traffic Sign Classification',year: '2025',tech: 'Python, TensorFlow, CNN, FastAPI, Angular',image: 'assets/thumbnail_traffic.webp'},
+    {id: 'project1',title: 'Traffic Sign Classification',year: '2025',tech: 'Python, TensorFlow, Angular',image: 'assets/thumbnail_traffic.webp'},
     { id: 'project2', title: 'NSQIP Dashboard (Kaiser Permanente)', year: '2025', tech: 'PowerBI, SAS, Python, Excel', image: 'assets/kaiser-thumbnail.png' },
     { id: 'project3', title: 'Property Price Predictor', year: '2024-2025', tech: 'Python', image: 'assets/project-thumbnail_Property.png' },
     { id: 'project4', title: 'Home Field Advantage', year: '2024-2025', tech: 'Python', image: 'assets/project-thumbnail_HFA.png' },
