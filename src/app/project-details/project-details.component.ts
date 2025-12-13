@@ -19,6 +19,7 @@ export class ProjectDetailsComponent {
   isPropertyPrice = false;
   isPdfProject = false;
   isVideoProject = false;
+  isTraffic = false;
   currentPage: number | null = 1;
   isFullscreen = false;
 
@@ -47,13 +48,31 @@ export class ProjectDetailsComponent {
 
   projectData: Record<string, any> = {
     project1: {
+      title: 'Traffic Sign Classification (CNN)',
+      description: 'A CNN model built to classify traffic sign images into 43 different categories using the German Traffic Sign Recognition Benchmark (GTSRB) dataset.',
+      techStack: ['Python', 'TensorFlow/Keras', 'CNN', 'Scikit', 'Matplotlib', 'Pandas', 'Numpy', 'Scipy', 'VSCode'],
+      githubLink: 'https://github.com/AlexDieterr/TrafficSignNN',
+      pdfUrl: '/assets/propertyprice.pdf',
+      type: 'pdf',
+      sections: [
+        { title: 'Introduction', page: 1 },
+        { title: 'Dataset Overview', page: 2 },
+        { title: 'Exploratory Data Analysis', page: 4 },
+        { title: 'Feature Engineering', page: 7 },
+        { title: 'Modeling', page: 10 },
+        { title: 'Model Evaluation', page: 14 },
+        { title: 'Predictions', page: 17 },
+        { title: 'Conclusion', page: 20 }
+      ]
+    },
+    project2: {
       title: 'Pediatric Dashboard (Kaiser Permanente)',
       description: 'A dashboard I created while working with Kaiser Permanente as a Data Scientist Intern',
       techStack: ['PowerBi', 'Excel', 'SAS', 'Python'],
       videoUrl: 'assets/NSQIP_PEDS_Dashboard.mp4',
       type: 'video'
     },
-    project2: {
+    project3: {
       title: 'Property Price Predictor',
       description: 'A machine learning model to predict property prices.',
       techStack: ['Python', 'Scikit', 'Matplotlib', 'Pandas', 'Numpy', 'Scipy', 'VSCode'],
@@ -71,7 +90,7 @@ export class ProjectDetailsComponent {
         { title: 'Conclusion', page: 20 }
       ]
     },
-    project3: {
+    project4: {
       title: 'Home Field Advantage',
       description: 'An analysis of home-field advantage in professional sports using statistical modeling.',
       techStack: ['Python', 'Pandas', 'Matplotlib', 'VSCode'],
@@ -88,7 +107,7 @@ export class ProjectDetailsComponent {
         { title: 'Rivalry Game Analysis', page: 28 }
       ]
     },
-    project4: {
+    project5: {
       title: 'Investment App',
       description: 'A web-based investment tracking app built with Angular.',
       techStack: ['Angular', 'TypeScript', 'HTML','VSCode'],
@@ -96,7 +115,7 @@ export class ProjectDetailsComponent {
       githubLink: 'https://github.com/AlexDieterr/InvestmentAppAngular',
       type: 'video'
     },
-    project5: {
+    project6: {
       title: 'Task Management System',
       description: 'A full-stack task management system with authentication and real-time updates.',
       techStack: ['Angular', 'Node.js', 'TypeScript'],
@@ -104,7 +123,7 @@ export class ProjectDetailsComponent {
       githubLink: 'https://github.com/AlexDieterr/TasksManagementAngular',  
       type: 'video'
     },
-    project6: {
+    project7: {
       title: 'Personal Website',
       description: 'Hi there! This project is actually what you are currently on! I built this website from scratch on VsCode to showcase my projects, skills, and experience. It’s a clean, easy-to-navigate portfolio that gives a quick look at what I’ve built and what I’m working on. If you want to look at the code behind how I built this, scroll down a bit and click the GitHub button!',
       contactMessage: 'If you have any questions, feel free to contact me!',
@@ -126,6 +145,8 @@ export class ProjectDetailsComponent {
             this.isPropertyPrice = true;
           } else if (this.projectId === 'project3') {
             this.isHomeFieldAdvantage = true;
+          } else if (this.projectId === 'project1') {
+            this.isTraffic = true;
           }
         this.isPdfProject = true;
         this.sections = this.project.sections || [];
