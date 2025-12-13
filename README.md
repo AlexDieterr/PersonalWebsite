@@ -1,27 +1,57 @@
-# MyAngularProject
+# Personal Portfolio Website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+This repository contains the source code for my personal portfolio website. The site was built from scratch to showcase my data science, machine learning, and software projects in a clear and interactive way. It serves as a central place to present full project workflows, results, and supporting materials beyond just code notebooks.
 
-## Development server
+The website is designed to be simple, responsive, and easy to navigate, with a focus on clearly communicating technical work to both technical and non-technical audiences.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## Live Site
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You can view the live website here:  
+[https://alexdieter.com](https://alexdieter.com)
 
-## Build
+---
+## Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Dynamic project pages with routing based on project selection  
+- Embedded PDF viewers for detailed project reports and notebooks  
+- Interactive sections for project overviews and results  
+- Integrated GitHub links for each project  
+- Support for video-based project demos  
+- Clean, responsive layout built with Angular  
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Projects Highlighted
 
-## Running end-to-end tests
+The site includes a variety of projects, such as:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Machine learning models for property price prediction  
+- Statistical analysis of NFL home-field advantage  
+- Data visualization dashboards built during my internship at Kaiser Permanente  
+- Full-stack and frontend application projects  
 
-## Further help
+Each project page is designed to clearly explain the problem, approach, and results.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+## Technologies Used
+
+- Angular  
+- TypeScript  
+- HTML and CSS  
+- GitHub  
+- VS Code  
+
+---
+
+## Purpose
+
+The goal of this website is not only to display finished projects, but also to demonstrate how data analysis and machine learning work can be presented as complete, user-facing products. It reflects my interest in building end-to-end solutions that combine data, modeling, and clean user interfaces.
+
+---
+
+## Author
+
+Alex Dieter  
