@@ -34,22 +34,27 @@
     <div class="overview">
         <h2>Overview</h2>
         <p>
-            Property price overview
+           The Property Price Predictor is a machine learning project that estimates the median house value of California neighborhoods using census data from 1990. Each data point represents a district rather than a single home, with features describing income levels, population, housing characteristics, and location. 
+        </p>     
+        
+        <br>
+        
+
+        <p>
+
+           The goal of this project was to understand what factors influence housing prices and to compare different machine learning models to see which one performs best. I started with basic models and gradually moved to more flexible approaches, focusing on feature engineering and model evaluation. This project also explores how location and income interact with housing density to affect property values.
         </p>
     </div>
 
     <div class="results">
         <h2>Results</h2>
-        <p>
-            • Overall Win Rate: Home teams won 58% of games, while away teams won 42%.<br>
-            • Point Margins: Home teams, on average, won by 2+ points more than away teams.<br>
-            • Travel Distance Impact: Teams traveling longer distances had lower win rates, 
-              with a sharp drop for very long travel (49.2%) compared to moderate travel (57–58%).<br>
-            • Playoff vs. Regular Season: Home-field advantage was even stronger in playoff games, 
-              with home teams winning 65.9% of the time and winning by an average of 6.15 points.<br>
-            • Rivalry Games: Home teams still had an advantage, but rivalry games were closer contests, 
-              with a significantly smaller win margin compared to non-rivalry games.<br>
-        </p>
+       <p>
+  • Model Performance: The tuned Random Forest model achieved an R² score of about 0.81 on the test data, outperforming both linear regression and a single decision tree.<br>
+  • Error Metrics: The final model produced a mean absolute error of roughly $32,000, which is reasonable given the wide range of housing prices in the dataset.<br>
+  • Feature Importance: Median income was the strongest predictor of housing prices, followed by location-based features such as latitude and longitude.<br>
+  • Household Ratios: Engineered features like rooms per household and population per household helped capture housing density effects and improved accuracy.<br>
+  • Prediction Behavior: When tested on realistic neighborhood scenarios, the model produced sensible predictions, with lower values for inland, lower-income areas and higher values for coastal, higher-income areas.<br>
+</p>
     </div>
 </section>
 
@@ -140,7 +145,10 @@
 
 <section class="github-section" *ngIf="project.title !== 'Pediatric Dashboard (Kaiser Permanente)'">
     <h2>View the Code!</h2>
-    <a href="https://github.com/AlexDieterr/InvestmentAppAngular" target="_blank" class="github-btn">
+    <a *ngIf="project?.githubLink"
+   [href]="project.githubLink"
+   target="_blank"
+   class="github-btn">
         <img src="assets/githublogo.png" alt="GitHub Logo" />
     </a>
 </section>
