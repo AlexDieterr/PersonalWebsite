@@ -4,13 +4,21 @@
     <h1>{{ project?.title }}</h1>
 </div>
 
-<div class="analysis-scroll-cue">
-  <span class="cue-text">Scroll for analysis</span>
-  <span class="cue-arrow">↓</span>
+<div
+  class="analysis-scroll-cue"
+  *ngIf="showScrollCue"
+  (click)="onScrollCueClick()"
+>
+  <span class="cue-text">{{ scrollCueText }}</span>
+  <span class="cue-arrow">{{ scrollCueArrow }}</span>
 </div>
 
 <!-- Traffic Sign Interactive Demo -->
-<section *ngIf="isPdfProject && isTraffic" class="traffic-demo">
+<section
+  #demoSection
+  *ngIf="isPdfProject && isTraffic"
+  class="traffic-demo"
+>
   <div class="traffic-demo-card">  
     <h2>
       Try the Model
@@ -66,8 +74,12 @@
       />
     </div>
 
+    <div class="model-status" *ngIf="showModelWorking">
+      🧠 Running model… this may take a few seconds on first load ⏳
+    </div>
+
     <div class="prediction-box" *ngIf="predictionResult">
-      <h3>Prediction</h3>
+      <h3>The model predicts the traffic sign is:</h3>
       <p>
         <strong>{{ predictionResult.prediction }}</strong><br />
         Confidence: {{ predictionResult.confidence | percent:'1.0-2' }}
@@ -80,7 +92,7 @@
 </section>
 
 
-<div *ngIf="isPdfProject; else normalProjectLayout" class="project-container">
+<div *ngIf="isPdfProject; else normalProjectLayout" class="project-container" #analysisSection>
     <aside class="sidebar">
         <ul>
             <li *ngFor="let section of sections"

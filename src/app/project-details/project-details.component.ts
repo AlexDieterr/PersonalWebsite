@@ -26,6 +26,12 @@ export class ProjectDetailsComponent {
   isDragging = false;
   isGenerating = false;
   isPredicting = false;
+  modelWorkingTimer: any = null;
+  showModelWorking = false;
+  
+  showScrollCue = true;
+  scrollCueText = 'Scroll for analysis and more';
+  scrollCueArrow = '↓';
 
   generatedImages: { image: string; label: string }[] = [];
   selectedImage: string | null = null;
@@ -35,7 +41,9 @@ export class ProjectDetailsComponent {
     confidence: number;
   } | null = null;
   
-
+  @ViewChild('demoSection', { static: false })
+  demoSection!: ElementRef<HTMLElement>;
+  @ViewChild('analysisSection') analysisSection!: ElementRef<HTMLElement>;
   @ViewChild('pdfContainer', { static: false }) pdfContainer!: ElementRef<HTMLElement>;
 
   sections: { id: string; title: string; page: number }[] = [];
@@ -163,6 +171,7 @@ export class ProjectDetailsComponent {
             this.isHomeFieldAdvantage = true;
           } else if (this.projectId === 'project1') {
             this.isTraffic = true;
+            this.pingTrafficApi();
           }
         this.isPdfProject = true;
         this.sections = this.project.sections || [];
@@ -214,10 +223,12 @@ export class ProjectDetailsComponent {
 
   predictFromBase64(base64Image: string) {
     this.selectedImage = base64Image;
-
-    // Remove prediction visually, NOT images
     this.predictionResult = null;
-    this.isPredicting = true;
+
+    // Delay showing loading message so fast predictions don't flash
+    this.modelWorkingTimer = setTimeout(() => {
+      this.showModelWorking = true;
+    }, 400);
 
     const blob = this.base64ToBlob(base64Image);
     const formData = new FormData();
@@ -225,13 +236,20 @@ export class ProjectDetailsComponent {
 
     this.http
       .post<any>('https://trafficsignnn.onrender.com/predict', formData)
-      .subscribe(result => {
-        this.isPredicting = false;
+      .subscribe({
+        next: result => {
+          clearTimeout(this.modelWorkingTimer);
+          this.showModelWorking = false;
 
-        // Force visual re-appearance
-        setTimeout(() => {
-          this.predictionResult = result;
-        }, 80);
+          // Force re-appearance animation
+          setTimeout(() => {
+            this.predictionResult = result;
+          }, 80);
+        },
+        error: () => {
+          clearTimeout(this.modelWorkingTimer);
+          this.showModelWorking = false;
+        }
       });
   }
 
@@ -274,4 +292,58 @@ export class ProjectDetailsComponent {
       this.predictFromBase64(data);
     }
   }
+  ngAfterViewInit() {
+    window.addEventListener('scroll', this.handleScroll.bind(this));
+  }
+
+  handleScroll() {
+    if (!this.demoSection) return;
+
+    const rect = this.demoSection.nativeElement.getBoundingClientRect();
+    const demoBottom = rect.bottom;
+    const viewportHeight = window.innerHeight;
+
+    if (demoBottom > viewportHeight * 0.3) {
+      this.scrollCueText = 'Scroll for analysis and more';
+      this.scrollCueArrow = '↓';
+      this.showScrollCue = true;
+    } else {
+      this.scrollCueText = 'Scroll for demo';
+      this.scrollCueArrow = '↑';
+      this.showScrollCue = true;
+    }
+  }
+
+  onScrollCueClick() {
+    // Scroll down to analysis
+    if (this.scrollCueArrow === '↓' && this.analysisSection) {
+      this.analysisSection.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+
+    // Scroll up to demo
+    if (this.scrollCueArrow === '↑' && this.demoSection) {
+      const yOffset = -220; 
+      const element = this.demoSection.nativeElement;
+      const y =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  pingTrafficApi() {
+    this.http
+      .get('https://trafficsignnn.onrender.com/health')
+      .subscribe({
+        next: () => {},
+        error: () => {}
+      });
+  }
 }
+
