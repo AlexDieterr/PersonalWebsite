@@ -63,7 +63,7 @@ export class ProjectDetailsComponent {
       description: 'A CNN model built to classify traffic sign images into 43 different categories using the German Traffic Sign Recognition Benchmark (GTSRB) dataset.',
       techStack: ['Python', 'TensorFlow/Keras', 'CNN', 'Scikit', 'Matplotlib', 'Pandas', 'Numpy', 'Scipy', 'VSCode'],
       githubLink: 'https://github.com/AlexDieterr/TrafficSignNN',
-      pdfUrl: '/assets/propertyprice.pdf',
+      pdfUrl: '/assets/TrafficCNN.pdf',
       type: 'pdf',
       sections: [
         { title: 'Introduction', page: 1 },
@@ -88,7 +88,7 @@ export class ProjectDetailsComponent {
       description: 'A machine learning model to predict property prices.',
       techStack: ['Python', 'Scikit', 'Matplotlib', 'Pandas', 'Numpy', 'Scipy', 'VSCode'],
       githubLink: 'https://github.com/AlexDieterr/NewPropertyPrice',
-      pdfUrl: '/assets/trafficCNN.pdf',
+      pdfUrl: '/assets/propertyprice.pdf',
       type: 'pdf',
       sections: [
         { title: 'Introduction', page: 1 },
