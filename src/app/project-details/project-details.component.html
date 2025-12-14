@@ -4,27 +4,46 @@
     <h1>{{ project?.title }}</h1>
 </div>
 
+<div class="analysis-scroll-cue">
+  <span class="cue-text">Scroll for analysis</span>
+  <span class="cue-arrow">↓</span>
+</div>
+
 <!-- Traffic Sign Interactive Demo -->
 <section *ngIf="isPdfProject && isTraffic" class="traffic-demo">
   <div class="traffic-demo-card">  
-    <h2>Try the Model</h2>
+    <h2>
+      Try the Model
+      <span style="font-size: 35px; opacity: 0.7;">🧠</span>
+    </h2>
 
     <p class="demo-instructions">
-      Click <strong>Generate</strong> to load example traffic signs from the dataset.
-      Select one to see how the neural network classifies it.
+      Click <strong>Generate</strong> to load random traffic signs from the dataset.
+      Drag and drop one to see how the neural network classifies it.
     </p>
 
     <div class="generate-btn-wrapper">
-      <button class="generate-btn" (click)="generateImages()">
+      <button
+      class="generate-btn"
+      (click)="generateImages()"
+      [disabled]="isGenerating"
+    >
+      <span *ngIf="!isGenerating">
         {{ generatedImages.length ? 'Generate More' : 'Generate Traffic Signs' }}
-      </button>
+      </span>
+      <span *ngIf="isGenerating">Loading images…</span>
+    </button>
+    </div>
+    <div *ngIf="isPredicting" class="loading-indicator">
+      <p>Running model…</p>
     </div>
 
-    <div class="image-grid" *ngIf="generatedImages.length">
+    <div class="image-grid" *ngIf="generatedImages.length && !isGenerating">
       <img
         *ngFor="let img of generatedImages"
         [src]="'data:image/png;base64,' + img.image"
         draggable="true"
+        [class.active]="selectedImage === img.image"
         (dragstart)="
           $event.dataTransfer?.setData('text/plain', img.image)
         "
@@ -53,6 +72,9 @@
         <strong>{{ predictionResult.prediction }}</strong><br />
         Confidence: {{ predictionResult.confidence | percent:'1.0-2' }}
       </p>
+      <div class="confidence-bar-container">
+        <div class="confidence-bar-fill" [style.width.%]="predictionResult.confidence * 100"></div>
+      </div>
     </div>
   </div>
 </section>

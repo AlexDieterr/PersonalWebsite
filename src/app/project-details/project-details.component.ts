@@ -24,6 +24,8 @@ export class ProjectDetailsComponent {
   currentPage: number | null = 1;
   isFullscreen = false;
   isDragging = false;
+  isGenerating = false;
+  isPredicting = false;
 
   generatedImages: { image: string; label: string }[] = [];
   selectedImage: string | null = null;
@@ -198,27 +200,39 @@ export class ProjectDetailsComponent {
     }
   }
   generateImages() {
+    this.isGenerating = true;
+
     this.http
       .get<any[]>('https://trafficsignnn.onrender.com/random-images?n=5')
       .subscribe(data => {
         this.generatedImages = data;
         this.selectedImage = null;
         this.predictionResult = null;
+        this.isGenerating = false;
       });
   }
 
   predictFromBase64(base64Image: string) {
     this.selectedImage = base64Image;
 
+    // Remove prediction visually, NOT images
+    this.predictionResult = null;
+    this.isPredicting = true;
+
     const blob = this.base64ToBlob(base64Image);
     const formData = new FormData();
     formData.append('file', blob, 'image.png');
 
-  this.http
-    .post<any>('https://trafficsignnn.onrender.com/predict', formData)
-    .subscribe(result => {
-      this.predictionResult = result;
-    });
+    this.http
+      .post<any>('https://trafficsignnn.onrender.com/predict', formData)
+      .subscribe(result => {
+        this.isPredicting = false;
+
+        // Force visual re-appearance
+        setTimeout(() => {
+          this.predictionResult = result;
+        }, 80);
+      });
   }
 
   private base64ToBlob(base64: string): Blob {
