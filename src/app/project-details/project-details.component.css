@@ -1064,3 +1064,25 @@ body {
 .ng2-pdf-viewer-container > div {
   overflow: hidden !important;
 }
+
+
+
+.api-warmup-note {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #555;
+  opacity: 0.85;
+
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 420px;
+
+  animation: warmupFade 1.6s ease-in-out infinite;
+}
+
+@keyframes warmupFade {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}

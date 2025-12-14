@@ -28,6 +28,8 @@ export class ProjectDetailsComponent {
   isPredicting = false;
   modelWorkingTimer: any = null;
   showModelWorking = false;
+  showSlowApiMessage = false;
+  slowApiTimer: any = null;
   
   showScrollCue = true;
   scrollCueText = 'Scroll for analysis and more';
@@ -210,14 +212,31 @@ export class ProjectDetailsComponent {
   }
   generateImages() {
     this.isGenerating = true;
+    this.showSlowApiMessage = false;
+
+    // Start a 1-second timer
+    this.slowApiTimer = setTimeout(() => {
+      this.showSlowApiMessage = true;
+    }, 1000);
 
     this.http
       .get<any[]>('https://trafficsignnn.onrender.com/random-images?n=5')
-      .subscribe(data => {
-        this.generatedImages = data;
-        this.selectedImage = null;
-        this.predictionResult = null;
-        this.isGenerating = false;
+      .subscribe({
+        next: data => {
+          clearTimeout(this.slowApiTimer);
+
+          this.generatedImages = data;
+          this.selectedImage = null;
+          this.predictionResult = null;
+          this.isGenerating = false;
+
+          this.showSlowApiMessage = false;
+        },
+        error: () => {
+          clearTimeout(this.slowApiTimer);
+          this.isGenerating = false;
+          this.showSlowApiMessage = false;
+        }
       });
   }
 

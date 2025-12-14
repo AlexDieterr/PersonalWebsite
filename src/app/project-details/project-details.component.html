@@ -42,6 +42,14 @@
       <span *ngIf="isGenerating">Loading images…</span>
     </button>
     </div>
+
+    <div
+      *ngIf="showSlowApiMessage"
+      class="model-status"
+    >
+      API is loading — first request may take longer if it hasn’t been used recently.
+    </div>
+    
     <div *ngIf="isPredicting" class="loading-indicator">
       <p>Running model…</p>
     </div>
