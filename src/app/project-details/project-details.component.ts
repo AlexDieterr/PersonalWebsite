@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule, PdfViewerModule, HeaderComponent, ContactComponent],
   templateUrl: './project-details.component.html',
-  styleUrls: ['./project-details.component.css']
+  styleUrls: ['./project-details.component.css'],
 })
 export class ProjectDetailsComponent {
   projectId: string | null = '';
@@ -30,50 +30,62 @@ export class ProjectDetailsComponent {
   showModelWorking = false;
   showSlowApiMessage = false;
   slowApiTimer: any = null;
-  
+
   showScrollCue = true;
   scrollCueText = 'Scroll for analysis and more';
   scrollCueArrow = '↓';
 
   generatedImages: { image: string; label: string }[] = [];
   selectedImage: string | null = null;
-  
+
   predictionResult: {
     prediction: string;
     confidence: number;
   } | null = null;
-  
+
   @ViewChild('demoSection', { static: false })
   demoSection!: ElementRef<HTMLElement>;
   @ViewChild('analysisSection') analysisSection!: ElementRef<HTMLElement>;
-  @ViewChild('pdfContainer', { static: false }) pdfContainer!: ElementRef<HTMLElement>;
+  @ViewChild('pdfContainer', { static: false })
+  pdfContainer!: ElementRef<HTMLElement>;
 
   sections: { id: string; title: string; page: number }[] = [];
 
   toolLogos: { [key: string]: string } = {
-    'Angular': 'assets/icons8-angular-48.png',
-    'HTML': 'assets/icons8-html5-48.png',
-    'TypeScript': 'assets/icons8-typescript-48.png',
-    'Numpy': 'assets/icons8-numpy-48.png',
-    'VSCode': 'assets/icons8-vs-code-48.png',
+    Angular: 'assets/icons8-angular-48.png',
+    HTML: 'assets/icons8-html5-48.png',
+    TypeScript: 'assets/icons8-typescript-48.png',
+    Numpy: 'assets/icons8-numpy-48.png',
+    VSCode: 'assets/icons8-vs-code-48.png',
     'Node.js': 'assets/icons8-nodejs-48.png',
-    'Python': 'assets/icons8-python-48.png',
-    'Pandas': 'assets/icons8-pandas-48.png',
-    'Github': 'assets/icons8-github-48.png',
-    'Matplotlib': 'assets/Matplotlib.png',
-    'Pytorch': 'assets/pytorch.png',
-    'Scikit': 'assets/scikit.png',
-    'Scipy': 'assets/scipy.png',
-    'SAS': 'assets/sas.png',
-    'PowerBi': 'assets/icons8-power-bi-48.png',
-    'Excel': 'assets/icons8-excel-48.png'
+    Python: 'assets/icons8-python-48.png',
+    Pandas: 'assets/icons8-pandas-48.png',
+    Github: 'assets/icons8-github-48.png',
+    Matplotlib: 'assets/Matplotlib.png',
+    Pytorch: 'assets/pytorch.png',
+    Scikit: 'assets/scikit.png',
+    Scipy: 'assets/scipy.png',
+    SAS: 'assets/sas.png',
+    PowerBi: 'assets/icons8-power-bi-48.png',
+    Excel: 'assets/icons8-excel-48.png',
   };
 
   projectData: Record<string, any> = {
     project1: {
       title: 'Traffic Sign Classification (CNN)',
-      description: 'A CNN model built to classify traffic sign images into 43 different categories using the German Traffic Sign Recognition Benchmark (GTSRB) dataset.',
-      techStack: ['Python', 'TensorFlow/Keras', 'CNN', 'Scikit', 'Matplotlib', 'Pandas', 'Numpy', 'Scipy', 'VSCode'],
+      description:
+        'A CNN model built to classify traffic sign images into 43 different categories using the German Traffic Sign Recognition Benchmark (GTSRB) dataset.',
+      techStack: [
+        'Python',
+        'TensorFlow/Keras',
+        'CNN',
+        'Scikit',
+        'Matplotlib',
+        'Pandas',
+        'Numpy',
+        'Scipy',
+        'VSCode',
+      ],
       githubLink: 'https://github.com/AlexDieterr/TrafficSignNN',
       pdfUrl: '/assets/TrafficCNN.pdf',
       type: 'pdf',
@@ -85,20 +97,29 @@ export class ProjectDetailsComponent {
         { title: 'Modeling', page: 10 },
         { title: 'Model Evaluation', page: 14 },
         { title: 'Predictions', page: 17 },
-        { title: 'Conclusion', page: 20 }
-      ]
+        { title: 'Conclusion', page: 20 },
+      ],
     },
     project2: {
       title: 'Pediatric Dashboard (Kaiser Permanente)',
-      description: 'A dashboard I created while working with Kaiser Permanente as a Data Scientist Intern',
+      description:
+        'A dashboard I created while working with Kaiser Permanente as a Data Scientist Intern',
       techStack: ['PowerBi', 'Excel', 'SAS', 'Python'],
       videoUrl: 'assets/NSQIP_PEDS_Dashboard.mp4',
-      type: 'video'
+      type: 'video',
     },
     project3: {
       title: 'Property Price Predictor',
       description: 'A machine learning model to predict property prices.',
-      techStack: ['Python', 'Scikit', 'Matplotlib', 'Pandas', 'Numpy', 'Scipy', 'VSCode'],
+      techStack: [
+        'Python',
+        'Scikit',
+        'Matplotlib',
+        'Pandas',
+        'Numpy',
+        'Scipy',
+        'VSCode',
+      ],
       githubLink: 'https://github.com/AlexDieterr/NewPropertyPrice',
       pdfUrl: '/assets/propertyprice.pdf',
       type: 'pdf',
@@ -110,12 +131,13 @@ export class ProjectDetailsComponent {
         { title: 'Modeling', page: 10 },
         { title: 'Model Evaluation', page: 14 },
         { title: 'Predictions', page: 17 },
-        { title: 'Conclusion', page: 20 }
-      ]
+        { title: 'Conclusion', page: 20 },
+      ],
     },
     project4: {
       title: 'Home Field Advantage',
-      description: 'An analysis of home-field advantage in professional sports using statistical modeling.',
+      description:
+        'An analysis of home-field advantage in professional sports using statistical modeling.',
       techStack: ['Python', 'Pandas', 'Matplotlib', 'VSCode'],
       pdfUrl: '/assets/home-field-advantage.pdf',
       type: 'pdf',
@@ -127,45 +149,44 @@ export class ProjectDetailsComponent {
         { title: 'Exploratory Data Analysis', page: 12 },
         { title: 'Visualizations and Insights', page: 17 },
         { title: 'Playoffs vs Regular Season', page: 24 },
-        { title: 'Rivalry Game Analysis', page: 28 }
-      ]
+        { title: 'Rivalry Game Analysis', page: 28 },
+      ],
     },
     project5: {
       title: 'Investment App',
       description: 'A web-based investment tracking app built with Angular.',
-      techStack: ['Angular', 'TypeScript', 'HTML','VSCode'],
-      videoUrl: 'assets/Investment_Recording.mov',  
+      techStack: ['Angular', 'TypeScript', 'HTML', 'VSCode'],
+      videoUrl: 'assets/Investment_Recording.mov',
       githubLink: 'https://github.com/AlexDieterr/InvestmentAppAngular',
-      type: 'video'
+      type: 'video',
     },
     project6: {
       title: 'Task Management System',
-      description: 'A full-stack task management system with authentication and real-time updates.',
+      description:
+        'A full-stack task management system with authentication and real-time updates.',
       techStack: ['Angular', 'Node.js', 'TypeScript'],
-      videoUrl: 'assets/TaskManagement.mov', 
-      githubLink: 'https://github.com/AlexDieterr/TasksManagementAngular',  
-      type: 'video'
+      videoUrl: 'assets/TaskManagement.mov',
+      githubLink: 'https://github.com/AlexDieterr/TasksManagementAngular',
+      type: 'video',
     },
     project7: {
       title: 'Personal Website',
-      description: 'Hi there! This project is actually what you are currently on! I built this website from scratch on VsCode to showcase my projects, skills, and experience. It’s a clean, easy-to-navigate portfolio that gives a quick look at what I’ve built and what I’m working on. If you want to look at the code behind how I built this, scroll down a bit and click the GitHub button!',
+      description:
+        'Hi there! This project is actually what you are currently on! I built this website from scratch on VsCode to showcase my projects, skills, and experience. It’s a clean, easy-to-navigate portfolio that gives a quick look at what I’ve built and what I’m working on. If you want to look at the code behind how I built this, scroll down a bit and click the GitHub button!',
       contactMessage: 'If you have any questions, feel free to contact me!',
       techStack: ['Angular', 'Node.js', 'TypeScript'],
-      githubLink: 'https://github.com/AlexDieterr/GithubioWebsite',  
-      type: 'personal'
-    }
+      githubLink: 'https://github.com/AlexDieterr/GithubioWebsite',
+      type: 'personal',
+    },
   };
 
-  constructor(
-    private route: ActivatedRoute,
-    private http: HttpClient
-  ) {
-    this.route.paramMap.subscribe(params => {
+  constructor(private route: ActivatedRoute, private http: HttpClient) {
+    this.route.paramMap.subscribe((params) => {
       this.projectId = params.get('id');
-  
+
       if (this.projectId && this.projectData[this.projectId]) {
         this.project = this.projectData[this.projectId];
-  
+
         if (this.project.type === 'pdf') {
           if (this.projectId === 'project2') {
             this.isPropertyPrice = true;
@@ -175,23 +196,22 @@ export class ProjectDetailsComponent {
             this.isTraffic = true;
             this.pingTrafficApi();
           }
-        this.isPdfProject = true;
-        this.sections = this.project.sections || [];
-      } else if (this.project.type === 'video') {
+          this.isPdfProject = true;
+          this.sections = this.project.sections || [];
+        } else if (this.project.type === 'video') {
           this.isVideoProject = true;
         }
-        
       }
     });
-  
-    document.addEventListener("fullscreenchange", () => {
+
+    document.addEventListener('fullscreenchange', () => {
       this.isFullscreen = !!document.fullscreenElement;
     });
   }
 
   scrollToSection(pageNumber: number) {
     if (this.currentPage === pageNumber) {
-      this.currentPage = null; 
+      this.currentPage = null;
       setTimeout(() => {
         this.currentPage = pageNumber;
       }, 100);
@@ -203,7 +223,9 @@ export class ProjectDetailsComponent {
   toggleFullScreen() {
     const elem = this.pdfContainer.nativeElement;
     if (!this.isFullscreen) {
-      elem.requestFullscreen().catch(err => console.error("Fullscreen error:", err));
+      elem
+        .requestFullscreen()
+        .catch((err) => console.error('Fullscreen error:', err));
       this.isFullscreen = true;
     } else {
       document.exitFullscreen();
@@ -222,7 +244,7 @@ export class ProjectDetailsComponent {
     this.http
       .get<any[]>('https://trafficsignnn.onrender.com/random-images?n=5')
       .subscribe({
-        next: data => {
+        next: (data) => {
           clearTimeout(this.slowApiTimer);
 
           this.generatedImages = data;
@@ -236,7 +258,7 @@ export class ProjectDetailsComponent {
           clearTimeout(this.slowApiTimer);
           this.isGenerating = false;
           this.showSlowApiMessage = false;
-        }
+        },
       });
   }
 
@@ -256,7 +278,7 @@ export class ProjectDetailsComponent {
     this.http
       .post<any>('https://trafficsignnn.onrender.com/predict', formData)
       .subscribe({
-        next: result => {
+        next: (result) => {
           clearTimeout(this.modelWorkingTimer);
           this.showModelWorking = false;
 
@@ -268,7 +290,7 @@ export class ProjectDetailsComponent {
         error: () => {
           clearTimeout(this.modelWorkingTimer);
           this.showModelWorking = false;
-        }
+        },
       });
   }
 
@@ -287,10 +309,6 @@ export class ProjectDetailsComponent {
   onDragStart(base64Image: string) {
     this.selectedImage = base64Image;
   }
-
-
-
-
 
   onDragOver(event: DragEvent) {
     event.preventDefault();
@@ -338,31 +356,28 @@ export class ProjectDetailsComponent {
     if (this.scrollCueArrow === '↓' && this.analysisSection) {
       this.analysisSection.nativeElement.scrollIntoView({
         behavior: 'smooth',
-        block: 'start'
+        block: 'start',
       });
     }
 
     // Scroll up to demo
     if (this.scrollCueArrow === '↑' && this.demoSection) {
-      const yOffset = -220; 
+      const yOffset = -220;
       const element = this.demoSection.nativeElement;
       const y =
         element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
       window.scrollTo({
         top: y,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   }
 
   pingTrafficApi() {
-    this.http
-      .get('https://trafficsignnn.onrender.com/health')
-      .subscribe({
-        next: () => {},
-        error: () => {}
-      });
+    this.http.get('https://trafficsignnn.onrender.com/health').subscribe({
+      next: () => {},
+      error: () => {},
+    });
   }
 }
-

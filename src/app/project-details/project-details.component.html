@@ -1,25 +1,17 @@
 <app-header></app-header>
 
 <div class="page-title">
-    <h1>{{ project?.title }}</h1>
+  <h1>{{ project?.title }}</h1>
 </div>
 
-<div
-  class="analysis-scroll-cue"
-  *ngIf="showScrollCue && isTraffic"
-  (click)="onScrollCueClick()"
->
+<div class="analysis-scroll-cue" *ngIf="showScrollCue && isTraffic" (click)="onScrollCueClick()">
   <span class="cue-text">{{ scrollCueText }}</span>
   <span class="cue-arrow">{{ scrollCueArrow }}</span>
 </div>
 
 <!-- Traffic Sign Interactive Demo -->
-<section
-  #demoSection
-  *ngIf="isPdfProject && isTraffic"
-  class="traffic-demo"
->
-  <div class="traffic-demo-card">  
+<section #demoSection *ngIf="isPdfProject && isTraffic" class="traffic-demo">
+  <div class="traffic-demo-card">
     <h2>
       Try the Model
       <span style="font-size: 35px; opacity: 0.7;">🧠</span>
@@ -31,55 +23,34 @@
     </p>
 
     <div class="generate-btn-wrapper">
-      <button
-      class="generate-btn"
-      (click)="generateImages()"
-      [disabled]="isGenerating"
-    >
-      <span *ngIf="!isGenerating">
-        {{ generatedImages.length ? 'Generate More' : 'Generate Traffic Signs' }}
-      </span>
-      <span *ngIf="isGenerating">Loading images…</span>
-    </button>
+      <button class="generate-btn" (click)="generateImages()" [disabled]="isGenerating">
+        <span *ngIf="!isGenerating">
+          {{ generatedImages.length ? 'Generate More' : 'Generate Traffic Signs' }}
+        </span>
+        <span *ngIf="isGenerating">Loading images…</span>
+      </button>
     </div>
 
-    <div
-      *ngIf="showSlowApiMessage"
-      class="model-status"
-    >
+    <div *ngIf="showSlowApiMessage" class="model-status">
       API is loading — first request may take longer if it hasn’t been used recently.
     </div>
-    
+
     <div *ngIf="isPredicting" class="loading-indicator">
       <p>Running model…</p>
     </div>
 
     <div class="image-grid" *ngIf="generatedImages.length && !isGenerating">
-      <img
-        *ngFor="let img of generatedImages"
-        [src]="'data:image/png;base64,' + img.image"
-        draggable="true"
-        [class.active]="selectedImage === img.image"
-        (dragstart)="
+      <img *ngFor="let img of generatedImages" [src]="'data:image/png;base64,' + img.image" draggable="true"
+        [class.active]="selectedImage === img.image" (dragstart)="
           $event.dataTransfer?.setData('text/plain', img.image)
-        "
-      />
+        " />
     </div>
 
-    <div
-      class="drop-zone"
-      [class.dragging]="isDragging"
-      (dragover)="onDragOver($event)"
-      (dragleave)="onDragLeave($event)"
-      (drop)="onDrop($event)"
-    >
+    <div class="drop-zone" [class.dragging]="isDragging" (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
       <p *ngIf="!selectedImage">Drop a traffic sign here</p>
 
-      <img
-        *ngIf="selectedImage"
-        [src]="'data:image/png;base64,' + selectedImage"
-        class="dropped-image"
-      />
+      <img *ngIf="selectedImage" [src]="'data:image/png;base64,' + selectedImage" class="dropped-image" />
     </div>
 
     <div class="model-status" *ngIf="showModelWorking">
@@ -101,110 +72,124 @@
 
 
 <div *ngIf="isPdfProject; else normalProjectLayout" class="project-container" #analysisSection>
-    <aside class="sidebar">
-        <ul>
-            <li *ngFor="let section of sections"
-                [class.active]="currentPage === section.page"
-                (click)="scrollToSection(section.page)">
-                {{ section.title }}
-            </li>
-        </ul>
-    </aside>
+  <aside class="sidebar">
+    <ul>
+      <li *ngFor="let section of sections" [class.active]="currentPage === section.page"
+        (click)="scrollToSection(section.page)">
+        {{ section.title }}
+      </li>
+    </ul>
+  </aside>
 
-    <div class="pdf-container" #pdfContainer>
-        <button class="fullscreen-btn" (click)="toggleFullScreen()">
-            {{ isFullscreen ? '⨉' : '⤢' }}
-        </button>
+  <div class="pdf-container" #pdfContainer>
+    <button class="fullscreen-btn" (click)="toggleFullScreen()">
+      {{ isFullscreen ? '⨉' : '⤢' }}
+    </button>
 
-        <pdf-viewer *ngIf="currentPage !== null"
-                    [src]="project?.pdfUrl" 
-                    [render-text]="true" 
-                    [page]="currentPage">
-        </pdf-viewer>
-    </div>
+    <pdf-viewer *ngIf="currentPage !== null" [src]="project?.pdfUrl" [render-text]="true" [page]="currentPage">
+    </pdf-viewer>
+  </div>
 </div>
 
 <section *ngIf="isPdfProject && isTraffic" class="overview-results">
-    <div class="overview">
-        <h2>Overview</h2>
-        <p>
-          This project is a traffic sign classification system built using a Convolutional Neural Network (CNN). The goal was to train a model that can correctly identify different types of traffic signs from images, such as speed limits, warnings, and directional signs. I used the German Traffic Sign Recognition Benchmark (GTSRB), which contains images from 43 different traffic sign classes taken under varying lighting and weather conditions.
+  <div class="overview">
+    <h2>Overview</h2>
+    <p>
+      This project is a traffic sign classification system built using a Convolutional Neural Network (CNN). The goal
+      was to train a model that can correctly identify different types of traffic signs from images, such as speed
+      limits, warnings, and directional signs. I used the German Traffic Sign Recognition Benchmark (GTSRB), which has
+      images from 43 different traffic sign classes taken under various photo quality.
 
-          I built and trained the model in Python using TensorFlow and Keras, focusing on proper image preprocessing, model architecture design, and evaluation. After training, I deployed the model as a live API and connected it to this website so users can interact with it directly. The demo above allows users to generate random traffic sign images from the dataset and drag one into the model to see how it is classified in real time. This setup mirrors how a real image-based classification system would work in practice.
-        </p>
-    </div>
+      I built and trained the model in Python using TensorFlow and Keras. I focused on proper image preprocessing, model
+      design, and evaluation. After training, I deployed the model as a live API and connected it to this website so
+      users can interact with it directly. The demo above allows users to generate random traffic sign images from the
+      dataset and drag one into the model to see how it is classified in real time. This setup mirrors how a real
+      image-based classification system would work in practice.
+    </p>
+  </div>
 
-    <div class="results">
-        <h2>Results</h2>
-        <p>
-        • The CNN achieved ~99% accuracy on the validation dataset across 43 traffic sign classes.<br>
-        • Most classes show very high precision and recall, especially common signs like speed limits, stop signs, and priority signs.<br>
-        • Misclassifications were rare and mostly occurred between visually similar signs, such as different curve warnings or speed limits.<br>
-        • The confusion matrix confirms that the model correctly classifies the vast majority of images with very few errors.<br>
-        • For individual predictions, the model outputs a confidence score, which is displayed in the live demo to show how certain the model is about each result.<br>
-        • The model performs well enough to be used in a real-time, interactive setting, as demonstrated by the drag-and-drop feature on this website.<br>
-        </p>
-    </div>
+  <div class="results">
+    <h2>Results</h2>
+    <p>
+      • The CNN achieved ~99% accuracy on the validation dataset across 43 traffic sign classes.<br>
+      • Most classes show very high precision and recall, especially common signs like speed limits, stop signs, and
+      priority signs.<br>
+      • Misclassifications were rare and mostly occurred between visually similar signs, such as different curve
+      warnings or speed limits.<br>
+      • The confusion matrix confirms that the model correctly classifies the vast majority of images with very few
+      errors.<br>
+      • For individual predictions, the model outputs a confidence score, which is displayed in the live demo to show
+      how certain the model is about each result.<br>
+      • The model performs well enough to be used in a real-time, interactive setting, as demonstrated by the
+      drag-and-drop feature on this website.<br>
+    </p>
+  </div>
 </section>
 
 <section *ngIf="isPdfProject && isPropertyPrice" class="overview-results">
-    <div class="overview">
-        <h2>Overview</h2>
-        <p>
-           The Property Price Predictor is a machine learning project that estimates the median house value of California neighborhoods using census data from 1990. Each data point represents a district rather than a single home, with features describing income levels, population, housing characteristics, and location. 
-        </p>     
-        
-        <br>
-        
+  <div class="overview">
+    <h2>Overview</h2>
+    <p>
+      The Property Price Predictor is a machine learning project that estimates the median house value of California
+      neighborhoods using census data from 1990. Each data point represents a district rather than a single home, with
+      features describing income levels, population, housing characteristics, and location.
+    </p>
+    <br>
+    <p>
+      The goal of this project was to understand what factors influence housing prices and to compare different machine
+      learning models to see which one performs best. I started with basic models and gradually moved to more flexible
+      approaches, focusing on feature engineering and model evaluation. This project also explores how location and
+      income interact with housing density to affect property values.
+    </p>
+  </div>
 
-        <p>
-
-           The goal of this project was to understand what factors influence housing prices and to compare different machine learning models to see which one performs best. I started with basic models and gradually moved to more flexible approaches, focusing on feature engineering and model evaluation. This project also explores how location and income interact with housing density to affect property values.
-        </p>
-    </div>
-
-    <div class="results">
-        <h2>Results</h2>
-       <p>
-  • Model Performance: The tuned Random Forest model achieved an R² score of about 0.81 on the test data, outperforming both linear regression and a single decision tree.<br>
-  • Error Metrics: The final model produced a mean absolute error of roughly $32,000, which is reasonable given the wide range of housing prices in the dataset.<br>
-  • Feature Importance: Median income was the strongest predictor of housing prices, followed by location-based features such as latitude and longitude.<br>
-  • Household Ratios: Engineered features like rooms per household and population per household helped capture housing density effects and improved accuracy.<br>
-  • Prediction Behavior: When tested on realistic neighborhood scenarios, the model produced sensible predictions, with lower values for inland, lower-income areas and higher values for coastal, higher-income areas.<br>
-</p>
-    </div>
+  <div class="results">
+    <h2>Results</h2>
+    <p>
+      • Model Performance: The tuned Random Forest model achieved an R² score of about 0.81 on the test data,
+      outperforming both linear regression and a single decision tree.<br>
+      • Error Metrics: The final model produced a mean absolute error of roughly $32,000, which is reasonable given the
+      wide range of housing prices in the dataset.<br>
+      • Feature Importance: Median income was the strongest predictor of housing prices, followed by location-based
+      features such as latitude and longitude.<br>
+      • Household Ratios: Engineered features like rooms per household and population per household helped capture
+      housing density effects and improved accuracy.<br>
+      • Prediction Behavior: When tested on realistic neighborhood scenarios, the model produced sensible predictions,
+      with lower values for inland, lower-income areas and higher values for coastal, higher-income areas.<br>
+    </p>
+  </div>
 </section>
 
 <section *ngIf="isPdfProject && isHomeFieldAdvantage" class="overview-results">
-    <div class="overview">
-        <h2>Overview</h2>
-        <p>
-            Home-field advantage is a widely debated phenomenon in professional sports, particularly in the NFL. 
-            Many believe that playing at home gives teams a significant edge due to factors like travel fatigue, 
-            crowd energy, and environmental familiarity. This project examines the impact of home-field advantage 
-            using data from 57 NFL seasons (1966-2023), analyzing over 14,000 games. The goal is to quantify the extent 
-            of home-field advantage and determine what factors contribute most to its effect on game outcomes.
-        </p>
-    </div>
+  <div class="overview">
+    <h2>Overview</h2>
+    <p>
+      Home-field advantage is a widely debated phenomenon in professional sports, particularly in the NFL.
+      Many believe that playing at home gives teams a significant edge due to factors like travel fatigue,
+      crowd energy, and environmental familiarity. This project examines the impact of home-field advantage
+      using data from 57 NFL seasons (1966-2023), analyzing over 14,000 games. The goal is to quantify the extent
+      of home-field advantage and determine what factors contribute most to its effect on game outcomes.
+    </p>
+  </div>
 
-    <div class="results">
-        <h2>Results</h2>
-        <p>
-            • Overall Win Rate: Home teams won 58% of games, while away teams won 42%.<br>
-            • Point Margins: Home teams, on average, won by 2+ points more than away teams.<br>
-            • Travel Distance Impact: Teams traveling longer distances had lower win rates, 
-              with a sharp drop for very long travel (49.2%) compared to moderate travel (57–58%).<br>
-            • Playoff vs. Regular Season: Home-field advantage was even stronger in playoff games, 
-              with home teams winning 65.9% of the time and winning by an average of 6.15 points.<br>
-            • Rivalry Games: Home teams still had an advantage, but rivalry games were closer contests, 
-              with a significantly smaller win margin compared to non-rivalry games.<br>
-        </p>
-    </div>
+  <div class="results">
+    <h2>Results</h2>
+    <p>
+      • Overall Win Rate: Home teams won 58% of games, while away teams won 42%.<br>
+      • Point Margins: Home teams, on average, won by 2+ points more than away teams.<br>
+      • Travel Distance Impact: Teams traveling longer distances had lower win rates,
+      with a sharp drop for very long travel (49.2%) compared to moderate travel (57–58%).<br>
+      • Playoff vs. Regular Season: Home-field advantage was even stronger in playoff games,
+      with home teams winning 65.9% of the time and winning by an average of 6.15 points.<br>
+      • Rivalry Games: Home teams still had an advantage, but rivalry games were closer contests,
+      with a significantly smaller win margin compared to non-rivalry games.<br>
+    </p>
+  </div>
 </section>
 
 
 <ng-template #normalProjectLayout> <!-- Non pdf projects -->
-  <section class="project-details" >
+  <section class="project-details">
 
     <div class="video-container" *ngIf="isVideoProject">
       <video controls>
@@ -215,58 +200,68 @@
     </div>
 
     <div *ngIf="project.type === 'personal'" class="personal-website">
-        <p>{{ project.description }}</p>
-        <p>{{project.contactMessage}}</p>
-      </div>
+      <p>{{ project.description }}</p>
+      <p>{{project.contactMessage}}</p>
+    </div>
 
     <div class="overview-tools-container">
       <section class="overview" *ngIf="project.title === 'Investment App'">
         <h2>Overview</h2>
         <p>
-            The Investment App is a simple yet powerful tool designed to help users estimate their potential returns based on key investment factors. This demo version focuses on calculating future gains using an initial investment, monthly contributions, and a given interest rate over time. With a clean and intuitive interface, users can quickly input their values and see how their investments grow. While it doesn’t include real-time stock tracking, this app provides a straightforward way to visualize the impact of compound interest and smart financial planning.
+          The Investment App is a simple yet powerful tool designed to help users estimate their potential returns based
+          on key investment factors. This demo version focuses on calculating future gains using an initial investment,
+          monthly contributions, and a given interest rate over time. With a clean and intuitive interface, users can
+          quickly input their values and see how their investments grow. While it doesn’t include real-time stock
+          tracking, this app provides a straightforward way to visualize the impact of compound interest and smart
+          financial planning.
         </p>
       </section>
       <section class="overview" *ngIf="project.title === 'Task Management System'">
         <h2>Overview</h2>
         <p>
-            The Task Management App is a  tool designed for  team collaboration and productivity. It allows users to add, assign, edit, and complete tasks while managing multiple team members effortlessly. With specific controls, you can track progress, update responsibilities, and ensure nothing falls through the cracks. Whether you’re coordinating a small group or overseeing a large project, this system keeps everyone on the same page, making task management efficient and hassle-free.
+          The Task Management App is a tool designed for team collaboration and productivity. It allows users to add,
+          assign, edit, and complete tasks while managing multiple team members effortlessly. With specific controls,
+          you can track progress, update responsibilities, and ensure nothing falls through the cracks. Whether you’re
+          coordinating a small group or overseeing a large project, this system keeps everyone on the same page, making
+          task management efficient and hassle-free.
         </p>
       </section>
       <section class="overview" *ngIf="project.title === 'Pediatric Dashboard (Kaiser Permanente)'">
         <h2>Overview</h2>
         <p>
-          The Pediatric Dashboard is a project I built during my time as a Data Scientist Intern at Kaiser Permanente. It’s an interactive dashboard that tracks key pediatric surgical metrics and helps clinical teams monitor trends in patient outcomes. I organized and cleaned ACS NSQIP data, (American College of Surgeons National Surgical Quality  Improvement Program) built the visuals, and structured everything so physicians and analysts can quickly find what they need. The goal was to make the data easier to understand and to support better decision-making in real clinical settings. One of the highlights of this project was the Opioid Reduction Project, which analyzed the frequency and dosage of opioids prescribed post-surgery, helping identify what doctors at what Kaiser Permanente locations were overprescribing and where improvements could be made.
+          The Pediatric Dashboard is a project I built during my time as a Data Scientist Intern at Kaiser Permanente.
+          It’s an interactive dashboard that tracks key pediatric surgical metrics and helps clinical teams monitor
+          trends in patient outcomes. I organized and cleaned ACS NSQIP data, (American College of Surgeons National
+          Surgical Quality Improvement Program) built the visuals, and structured everything so physicians and analysts
+          can quickly find what they need. The goal was to make the data easier to understand and to support better
+          decision-making in real clinical settings. One of the highlights of this project was the Opioid Reduction
+          Project, which analyzed the frequency and dosage of opioids prescribed post-surgery, helping identify what
+          doctors at what Kaiser Permanente locations were overprescribing and where improvements could be made.
 
         </p>
       </section>
 
-      <section class="tools"
-        *ngIf="project.title === 'Investment App'
+      <section class="tools" *ngIf="project.title === 'Investment App'
             || project.title === 'Task Management System'
             || project.title === 'Pediatric Dashboard (Kaiser Permanente)'">
-        
+
         <h2>Tools Used</h2>
         <div class="tool-logos">
-            <img *ngFor="let tool of project.techStack"
-                [src]="toolLogos[tool] || '/assets/logos/default.png'"
-                [alt]="tool"
-                [title]="tool">
+          <img *ngFor="let tool of project.techStack" [src]="toolLogos[tool] || '/assets/logos/default.png'"
+            [alt]="tool" [title]="tool">
         </div>
-    </section>
+      </section>
 
-        </div>
-</section>
+    </div>
+  </section>
 </ng-template>
 
 
 
 <section class="github-section" *ngIf="project.title !== 'Pediatric Dashboard (Kaiser Permanente)'">
-    <h2>View the Code!</h2>
-    <a *ngIf="project?.githubLink"
-   [href]="project.githubLink"
-   target="_blank"
-   class="github-btn">
-        <img src="assets/githublogo.png" alt="GitHub Logo" />
-    </a>
+  <h2>View the Code!</h2>
+  <a *ngIf="project?.githubLink" [href]="project.githubLink" target="_blank" class="github-btn">
+    <img src="assets/githublogo.png" alt="GitHub Logo" />
+  </a>
 </section>
 <app-contact></app-contact>
