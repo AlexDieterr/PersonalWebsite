@@ -16,7 +16,7 @@
 
     <div class="generate-btn-wrapper">
       <button class="generate-btn" (click)="generateImages()">
-        Generate Traffic Signs
+        {{ generatedImages.length ? 'Generate More' : 'Generate Traffic Signs' }}
       </button>
     </div>
 
