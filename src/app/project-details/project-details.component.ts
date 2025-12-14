@@ -199,7 +199,7 @@ export class ProjectDetailsComponent {
   }
   generateImages() {
     this.http
-      .get<any[]>('http://127.0.0.1:8000/random-images?n=5')
+      .get<any[]>('https://trafficsignnn.onrender.com/random-images?n=5')
       .subscribe(data => {
         this.generatedImages = data;
         this.selectedImage = null;
@@ -214,11 +214,11 @@ export class ProjectDetailsComponent {
     const formData = new FormData();
     formData.append('file', blob, 'image.png');
 
-    this.http
-      .post<any>('http://127.0.0.1:8000/predict', formData)
-      .subscribe(result => {
-        this.predictionResult = result;
-      });
+  this.http
+    .post<any>('https://trafficsignnn.onrender.com/predict', formData)
+    .subscribe(result => {
+      this.predictionResult = result;
+    });
   }
 
   private base64ToBlob(base64: string): Blob {
