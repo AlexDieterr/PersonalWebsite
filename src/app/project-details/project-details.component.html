@@ -6,7 +6,7 @@
 
 <div
   class="analysis-scroll-cue"
-  *ngIf="showScrollCue"
+  *ngIf="showScrollCue && isTraffic"
   (click)="onScrollCueClick()"
 >
   <span class="cue-text">{{ scrollCueText }}</span>
