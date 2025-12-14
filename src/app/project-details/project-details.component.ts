@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { HeaderComponent } from '../header/header.component';
 import { ContactComponent } from '../contact/contact.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-project-details',
@@ -22,6 +23,15 @@ export class ProjectDetailsComponent {
   isTraffic = false;
   currentPage: number | null = 1;
   isFullscreen = false;
+  isDragging = false;
+
+  generatedImages: { image: string; label: string }[] = [];
+  selectedImage: string | null = null;
+  
+  predictionResult: {
+    prediction: string;
+    confidence: number;
+  } | null = null;
   
 
   @ViewChild('pdfContainer', { static: false }) pdfContainer!: ElementRef<HTMLElement>;
@@ -78,7 +88,7 @@ export class ProjectDetailsComponent {
       description: 'A machine learning model to predict property prices.',
       techStack: ['Python', 'Scikit', 'Matplotlib', 'Pandas', 'Numpy', 'Scipy', 'VSCode'],
       githubLink: 'https://github.com/AlexDieterr/NewPropertyPrice',
-      pdfUrl: '/assets/propertyprice.pdf',
+      pdfUrl: '/assets/trafficCNN.pdf',
       type: 'pdf',
       sections: [
         { title: 'Introduction', page: 1 },
@@ -134,7 +144,10 @@ export class ProjectDetailsComponent {
     }
   };
 
-  constructor(private route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient
+  ) {
     this.route.paramMap.subscribe(params => {
       this.projectId = params.get('id');
   
@@ -182,6 +195,69 @@ export class ProjectDetailsComponent {
     } else {
       document.exitFullscreen();
       this.isFullscreen = false;
+    }
+  }
+  generateImages() {
+    this.http
+      .get<any[]>('http://127.0.0.1:8000/random-images?n=5')
+      .subscribe(data => {
+        this.generatedImages = data;
+        this.selectedImage = null;
+        this.predictionResult = null;
+      });
+  }
+
+  predictFromBase64(base64Image: string) {
+    this.selectedImage = base64Image;
+
+    const blob = this.base64ToBlob(base64Image);
+    const formData = new FormData();
+    formData.append('file', blob, 'image.png');
+
+    this.http
+      .post<any>('http://127.0.0.1:8000/predict', formData)
+      .subscribe(result => {
+        this.predictionResult = result;
+      });
+  }
+
+  private base64ToBlob(base64: string): Blob {
+    const byteCharacters = atob(base64);
+    const byteNumbers = new Array(byteCharacters.length);
+
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], { type: 'image/png' });
+  }
+
+  onDragStart(base64Image: string) {
+    this.selectedImage = base64Image;
+  }
+
+
+
+
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    this.isDragging = true;
+  }
+
+  onDragLeave(event: DragEvent) {
+    event.preventDefault();
+    this.isDragging = false;
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    this.isDragging = false;
+
+    const data = event.dataTransfer?.getData('text/plain');
+    if (data) {
+      this.predictFromBase64(data);
     }
   }
 }

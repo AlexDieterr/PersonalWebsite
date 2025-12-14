@@ -4,6 +4,58 @@
     <h1>{{ project?.title }}</h1>
 </div>
 
+<!-- Traffic Sign Interactive Demo -->
+<section *ngIf="isPdfProject && isTraffic" class="traffic-demo">
+  <div class="traffic-demo-card">  
+    <h2>Try the Model</h2>
+
+    <p class="demo-instructions">
+      Click <strong>Generate</strong> to load example traffic signs from the dataset.
+      Select one to see how the neural network classifies it.
+    </p>
+
+    <div class="generate-btn-wrapper">
+      <button class="generate-btn" (click)="generateImages()">
+        Generate Traffic Signs
+      </button>
+    </div>
+
+    <div class="image-grid" *ngIf="generatedImages.length">
+      <img
+        *ngFor="let img of generatedImages"
+        [src]="'data:image/png;base64,' + img.image"
+        draggable="true"
+        (dragstart)="
+          $event.dataTransfer?.setData('text/plain', img.image)
+        "
+      />
+    </div>
+
+    <div
+      class="drop-zone"
+      [class.dragging]="isDragging"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+    >
+      <p *ngIf="!selectedImage">Drop a traffic sign here</p>
+
+      <img
+        *ngIf="selectedImage"
+        [src]="'data:image/png;base64,' + selectedImage"
+        class="dropped-image"
+      />
+    </div>
+
+    <div class="prediction-box" *ngIf="predictionResult">
+      <h3>Prediction</h3>
+      <p>
+        <strong>{{ predictionResult.prediction }}</strong><br />
+        Confidence: {{ predictionResult.confidence | percent:'1.0-2' }}
+      </p>
+    </div>
+  </div>
+</section>
 
 
 <div *ngIf="isPdfProject; else normalProjectLayout" class="project-container">
