@@ -188,9 +188,9 @@ export class ProjectDetailsComponent {
         this.project = this.projectData[this.projectId];
 
         if (this.project.type === 'pdf') {
-          if (this.projectId === 'project2') {
+          if (this.projectId === 'project3') {
             this.isPropertyPrice = true;
-          } else if (this.projectId === 'project3') {
+          } else if (this.projectId === 'project4') {
             this.isHomeFieldAdvantage = true;
           } else if (this.projectId === 'project1') {
             this.isTraffic = true;
@@ -331,7 +331,11 @@ export class ProjectDetailsComponent {
   }
   ngAfterViewInit() {
     window.addEventListener('scroll', this.handleScroll.bind(this));
-  }
+    window.addEventListener('resize', this.positionScrollCue.bind(this));
+
+    // Initial position after view renders
+    setTimeout(() => this.positionScrollCue(), 0);
+    }
 
   handleScroll() {
     if (!this.demoSection) return;
@@ -379,5 +383,19 @@ export class ProjectDetailsComponent {
       next: () => {},
       error: () => {},
     });
+  }
+
+  positionScrollCue() {
+    const cue = document.querySelector('.analysis-scroll-cue') as HTMLElement;
+    if (!cue || !this.demoSection) return;
+
+    const demoRect = this.demoSection.nativeElement.getBoundingClientRect();
+    const cueWidth = cue.offsetWidth;
+
+    // True midpoint between viewport left (0) and demo left
+    const midpoint = demoRect.left / 2;
+
+    // Offset by half the cue width so it is actually centered
+    cue.style.left = `${midpoint - cueWidth / 2}px`;
   }
 }
