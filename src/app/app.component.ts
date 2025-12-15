@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';import { RouterModule } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 
 @Component({
@@ -11,7 +12,7 @@ import { HeaderComponent } from './header/header.component';
 })
 export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
-  
+
   ngOnInit(): void {
     this.pingTrafficApi();
   }
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit {
           .post('https://trafficsignnn.onrender.com/predict', formData)
           .subscribe({ error: () => {} });
       },
-      error: () => {}
+      error: () => {},
     });
   }
   scrollToSection(sectionId: string) {

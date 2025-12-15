@@ -7,13 +7,13 @@ import { isPlatformBrowser } from '@angular/common';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './hero.component.html',
-  styleUrl: './hero.component.css'
+  styleUrl: './hero.component.css',
 })
 export class HeroComponent implements AfterViewInit {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   scrollToContact() {
-    if (isPlatformBrowser(this.platformId)) { 
+    if (isPlatformBrowser(this.platformId)) {
       const contactSection = document.getElementById('contact');
       if (contactSection) {
         contactSection.scrollIntoView({ behavior: 'smooth' });
@@ -22,7 +22,7 @@ export class HeroComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (isPlatformBrowser(this.platformId)) { 
+    if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
         const nameElement = document.querySelector('.name');
         if (nameElement) {
