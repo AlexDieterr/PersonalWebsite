@@ -129,34 +129,44 @@
 <section *ngIf="isPdfProject && isPropertyPrice" class="overview-results">
   <div class="overview">
     <h2>Overview</h2>
-    <p>
-      The Property Price Predictor is a machine learning project that estimates the median house value of California
-      neighborhoods using census data from 1990. Each data point represents a district rather than a single home, with
-      features describing income levels, population, housing characteristics, and location.
-    </p>
-    <br>
-    <p>
-      The goal of this project was to understand what factors influence housing prices and to compare different machine
-      learning models to see which one performs best. I started with basic models and gradually moved to more flexible
-      approaches, focusing on feature engineering and model evaluation. This project also explores how location and
-      income interact with housing density to affect property values.
-    </p>
+      <p>
+        This project explores how different machine learning models behave when applied to historical housing data from the
+        1990 California Census. Each data point represents a census block group rather than an individual home, with features
+        describing income levels, population, housing characteristics, and geographic location.
+      </p>
+      <br>
+      <p>
+        The main goal of the project was to understand which factors are most strongly related to housing prices and to compare
+        several machine learning models, including linear regression, decision trees, random forests, and XGBoost. Rather than
+        focusing on real-world price prediction, the emphasis is on model performance, feature importance, and understanding
+        where and why certain models succeed or fail. This project highlights how income and location drive housing prices, as
+        well as the limitations of using aggregated historical data for prediction.
+      </p>
   </div>
 
   <div class="results">
     <h2>Results</h2>
-    <p>
-      • Model Performance: The tuned Random Forest model achieved an R² score of about 0.81 on the test data,
-      outperforming both linear regression and a single decision tree.<br>
-      • Error Metrics: The final model produced a mean absolute error of roughly $32,000, which is reasonable given the
-      wide range of housing prices in the dataset.<br>
-      • Feature Importance: Median income was the strongest predictor of housing prices, followed by location-based
-      features such as latitude and longitude.<br>
-      • Household Ratios: Engineered features like rooms per household and population per household helped capture
-      housing density effects and improved accuracy.<br>
-      • Prediction Behavior: When tested on realistic neighborhood scenarios, the model produced sensible predictions,
-      with lower values for inland, lower-income areas and higher values for coastal, higher-income areas.<br>
-    </p>
+      <p>
+        • Model Performance: I compared several models and found that XGBoost performed the best. It achieved an R² score of
+        about 0.84, meaning it explains roughly 84% of the variation in house prices. This was an improvement over the tuned
+        Random Forest (R² ≈ 0.81), as well as the decision tree and linear regression models.<br>
+
+        • Error Metrics: XGBoost also had the lowest errors. The mean absolute error was about $30,000, which means that, on
+        average, the model’s predictions were off by around $30k. The tuned Random Forest had an MAE closer to $32,000, and
+        linear regression performed much worse with errors closer to $49,000.<br>
+
+        • Feature Importance: Median income was the most important feature across all tree-based models. Location also mattered
+        a lot, especially whether a neighborhood was inland or closer to the coast. These features had a much bigger impact
+        than simple counts like total rooms or total bedrooms.<br>
+
+        • Household Ratios: Creating features like rooms per household and population per household helped the models capture
+        differences in housing density and slightly improved prediction accuracy compared to using the raw counts alone.<br>
+
+        • Prediction Behavior: The models generally behaved as expected, predicting lower prices for inland, lower-income
+        areas and higher prices for coastal, higher-income areas. Because the data comes from the 1990 census and represents
+        aggregated districts rather than individual homes, this project focuses more on comparing models and understanding
+        patterns than making precise modern-day price predictions.<br>
+      </p>
   </div>
 </section>
 

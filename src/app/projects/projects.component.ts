@@ -30,7 +30,7 @@ export class ProjectsComponent {
     },
     {
       id: 'project3',
-      title: 'Property Price Predictor',
+      title: 'Comparing Regression Models for Housing Prices',
       year: '2024-2025',
       tech: 'Python',
       image: 'assets/project-thumbnail_Property.png',
