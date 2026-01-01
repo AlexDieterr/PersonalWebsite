@@ -16,7 +16,7 @@
       The main results and findings are shown below, and the notebook walkthrough
       is included to show how the analysis and models were built step by step.
       This project focuses on industry-style experimentation,
-      reproducibility, and model evaluation rather than a single polished notebook. See the Github repo for full details
+      reproducibility, and model evaluation rather than a single polished notebook. See the Github repo below for full details.
     </p>
     <div class="hero-cta-label">View Repository</div>
     <a href="https://github.com/AlexDieterr/Keystroke-Dynamics" target="_blank" class="keystroke-github-btn">
@@ -27,16 +27,13 @@
   <div class="keystroke-overview">
     <h2>Overview</h2>
     <p>
-      This project investigates whether individuals can be identified using only
-      keystroke timing information, without relying on the actual text being typed.
-      Each user typed the same fixed password across multiple sessions, allowing the
-      analysis to focus purely on timing-based behavioral patterns.
+      This project explores whether people can be identified based only on how they type, using keystroke timing data rather than the actual text they enter. The analysis uses the CMU Keystroke Dynamics Benchmark dataset, where 51 users typed the same fixed password (.tie5Roanl) 400 times across different sessions. This setup allows the focus to stay purely on typing behavior instead of content.
+
+I extracted features such as key hold times and the timing between consecutive key presses, then evaluated how well different machine learning models could distinguish users based on these patterns. The project includes both a multi-class user identification task and a binary verification task, similar to how keystroke dynamics are discussed in real authentication systems.
+
     </p>
     <p>
-      I extracted key hold times and inter-key timing features and evaluated how
-      separable users are in feature space. Multiple machine learning models were
-      tested to understand what types of patterns are most useful for identifying
-      users based on typing behavior.
+The goal of this work is to understand what makes a user identifiable and why some users are much easier to recognize than others. The results show large differences in identifiability across users and suggest that being distinct from other users matters more than consistency alone. The notebook walkthrough below provides a full, step-by-step record of the analysis and modeling process for transparency and reproducibility.
     </p>
   </div>
 
@@ -121,10 +118,12 @@
   </section>
 </section>
 
+<section *ngIf="isKeystroke">
   <h2 class="walkthrough-title">Notebook Walkthrough</h2>
   <p class="walkthrough-subtitle">
     Full reproducible analysis and implementation details.
   </p>
+</section>
 
 <div *ngIf="isKeystroke" class="project-container" #analysisSection>
   <aside class="sidebar">

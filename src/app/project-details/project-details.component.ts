@@ -154,7 +154,6 @@ export class ProjectDetailsComponent {
       type: 'pdf',
       sections: [
         { title: 'Introduction', page: 1 },
-        { title: 'Dataset Overview', page: 2 },
         { title: 'Exploratory Data Analysis', page: 4 },
         { title: 'Feature Engineering', page: 7 },
         { title: 'Modeling', page: 10 },
