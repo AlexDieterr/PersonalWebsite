@@ -21,6 +21,7 @@ export class ProjectDetailsComponent {
   isPdfProject = false;
   isVideoProject = false;
   isTraffic = false;
+  isKeystroke = false;
   currentPage: number | null = 1;
   isFullscreen = false;
   isDragging = false;
@@ -72,6 +73,32 @@ export class ProjectDetailsComponent {
 
   projectData: Record<string, any> = {
     project1: {
+      title: 'Identifying Users via Typing Behavior',
+      description:
+        'This project investigates whether users can be identified solely from keystroke timing data, without relying on the actual text being typed. The analysis explores how individual typing patterns differ and evaluates multiple models to measure how separable users are based on their keystroke dynamics.',
+      techStack: [
+        'Python',
+        'Pandas',
+        'Numpy',
+        'Scikit',
+        'Matplotlib',
+        'VSCode',
+      ],
+      pdfUrl: '/assets/keystroke_dynamics_walkthrough.pdf',
+      type: 'pdf',
+      sections: [
+        { title: 'Introduction', page: 1 },
+        { title: 'Dataset Overview', page: 2 },
+        { title: 'Feature Extraction', page: 4 },
+        { title: 'Exploratory Analysis', page: 7 },
+        { title: 'Modeling Approach', page: 10 },
+        { title: 'Model Evaluation', page: 14 },
+        { title: 'Discussion', page: 18 },
+        { title: 'Conclusion', page: 21 },
+      ],
+    },
+
+    project2: {
       title: 'Traffic Sign Classification (CNN)',
       description:
         'A CNN model built to classify traffic sign images into 43 different categories using the German Traffic Sign Recognition Benchmark (GTSRB) dataset.',
@@ -100,7 +127,8 @@ export class ProjectDetailsComponent {
         { title: 'Conclusion', page: 20 },
       ],
     },
-    project2: {
+
+    project3: {
       title: 'Pediatric Dashboard (Kaiser Permanente)',
       description:
         'A dashboard I created while working with Kaiser Permanente as a Data Scientist Intern',
@@ -108,7 +136,8 @@ export class ProjectDetailsComponent {
       videoUrl: 'assets/NSQIP_PEDS_Dashboard.mp4',
       type: 'video',
     },
-    project3: {
+
+    project4: {
       title: 'Property Price Predictor',
       description: 'A machine learning model to predict property prices.',
       techStack: [
@@ -134,7 +163,8 @@ export class ProjectDetailsComponent {
         { title: 'Conclusion', page: 20 },
       ],
     },
-    project4: {
+
+    project5: {
       title: 'Home Field Advantage',
       description:
         'An analysis of home-field advantage in professional sports using statistical modeling.',
@@ -152,24 +182,8 @@ export class ProjectDetailsComponent {
         { title: 'Rivalry Game Analysis', page: 28 },
       ],
     },
-    project5: {
-      title: 'Investment App',
-      description: 'A web-based investment tracking app built with Angular.',
-      techStack: ['Angular', 'TypeScript', 'HTML', 'VSCode'],
-      videoUrl: 'assets/Investment_Recording.mov',
-      githubLink: 'https://github.com/AlexDieterr/InvestmentAppAngular',
-      type: 'video',
-    },
+
     project6: {
-      title: 'Task Management System',
-      description:
-        'A full-stack task management system with authentication and real-time updates.',
-      techStack: ['Angular', 'Node.js', 'TypeScript'],
-      videoUrl: 'assets/TaskManagement.mov',
-      githubLink: 'https://github.com/AlexDieterr/TasksManagementAngular',
-      type: 'video',
-    },
-    project7: {
       title: 'Personal Website',
       description:
         'Hi there! This project is actually what you are currently on! I built this website from scratch on VsCode to showcase my projects, skills, and experience. It’s a clean, easy-to-navigate portfolio that gives a quick look at what I’ve built and what I’m working on. If you want to look at the code behind how I built this, scroll down a bit and click the GitHub button!',
@@ -177,6 +191,25 @@ export class ProjectDetailsComponent {
       techStack: ['Angular', 'Node.js', 'TypeScript'],
       githubLink: 'https://github.com/AlexDieterr/GithubioWebsite',
       type: 'personal',
+    },
+
+    project7: {
+      title: 'Investment App',
+      description: 'A web-based investment tracking app built with Angular.',
+      techStack: ['Angular', 'TypeScript', 'HTML', 'VSCode'],
+      videoUrl: 'assets/Investment_Recording.mov',
+      githubLink: 'https://github.com/AlexDieterr/InvestmentAppAngular',
+      type: 'video',
+    },
+
+    project8: {
+      title: 'Task Management System',
+      description:
+        'A full-stack task management system with authentication and real-time updates.',
+      techStack: ['Angular', 'Node.js', 'TypeScript'],
+      videoUrl: 'assets/TaskManagement.mov',
+      githubLink: 'https://github.com/AlexDieterr/TasksManagementAngular',
+      type: 'video',
     },
   };
 
@@ -188,11 +221,15 @@ export class ProjectDetailsComponent {
         this.project = this.projectData[this.projectId];
 
         if (this.project.type === 'pdf') {
-          if (this.projectId === 'project3') {
+          if (this.projectId === 'project4') {
             this.isPropertyPrice = true;
-          } else if (this.projectId === 'project4') {
+          } else if (this.projectId === 'project5') {
             this.isHomeFieldAdvantage = true;
-          } else if (this.projectId === 'project1') {
+          } 
+          else if (this.projectId === 'project1') {
+            this.isKeystroke = true;
+          }
+          else if (this.projectId === 'project2') {
             this.isTraffic = true;
             this.pingTrafficApi();
           }

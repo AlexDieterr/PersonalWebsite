@@ -8,6 +8,142 @@
   <span class="cue-text">{{ scrollCueText }}</span>
   <span class="cue-arrow">{{ scrollCueArrow }}</span>
 </div>
+<!-- Keystroke Project -->
+<section *ngIf="isPdfProject && isKeystroke">
+  <section class="keystroke-hero">
+    <p class="keystroke-hero-text">
+      This project looks at identifying users based on how they type.
+      The main results and findings are shown below, and the notebook walkthrough
+      is included to show how the analysis and models were built step by step.
+      This project focuses on industry-style experimentation,
+      reproducibility, and model evaluation rather than a single polished notebook. See the Github repo for full details
+    </p>
+    <div class="hero-cta-label">View Repository</div>
+    <a href="https://github.com/AlexDieterr/Keystroke-Dynamics" target="_blank" class="keystroke-github-btn">
+      <img src="assets/githublogo.png" alt="GitHub Logo" />
+    </a>
+
+  </section>
+  <div class="keystroke-overview">
+    <h2>Overview</h2>
+    <p>
+      This project investigates whether individuals can be identified using only
+      keystroke timing information, without relying on the actual text being typed.
+      Each user typed the same fixed password across multiple sessions, allowing the
+      analysis to focus purely on timing-based behavioral patterns.
+    </p>
+    <p>
+      I extracted key hold times and inter-key timing features and evaluated how
+      separable users are in feature space. Multiple machine learning models were
+      tested to understand what types of patterns are most useful for identifying
+      users based on typing behavior.
+    </p>
+  </div>
+
+  <section class="keystroke-results">
+    <h3>Key Results</h3>
+
+    <div class="results-grid">
+      <div class="result-card highlight">
+        <span class="result-metric">+8%</span>
+        <h4>Tree-Based Models</h4>
+        <p>
+          Random Forest and XGBoost significantly outperformed linear models
+          for user identification at <br/> 86% vs 78% accuracy.
+        </p>
+      </div>
+
+      <div class="result-card">
+        <span class="result-metric">Near 100%</span>
+        <h4>Top Users</h4>
+        <p>
+          Several users achieved over 95% identification accuracy across
+    sessions, indicating strong individual typing signatures.
+        </p>
+      </div>
+
+      <div class="result-card">
+        <span class="result-metric">Key Features</span>
+        <h4>Timing Signals</h4>
+        <p>
+          Modifier key hold times, digraph latency, and key release timing
+    ranked among the top five most important features for identification.
+        </p>
+      </div>
+
+      <div class="result-card">
+        <span class="result-metric">Above Chance</span>
+        <h4>Baseline Comparison</h4>
+        <p>
+          All evaluated models performed far above random chance,
+          confirming that keystroke timing contains meaningful
+          identity information even without textual content.
+        </p>
+      </div>
+
+      <div class="result-card">
+        <span class="result-metric">Key Insight</span>
+        <h4>Consistency Is Not Enough</h4>
+        <p>
+          Users with low variance but similar timing profiles were harder
+    to distinguish than less consistent but more distinct users.
+        </p>
+      </div>
+
+      <div class="result-card">
+        <span class="result-metric">High Overlap</span>
+        <h4>Challenging Users</h4>
+        <p>
+          Some users showed overlapping patterns, leading to consistent
+          confusion between similar typists.
+        </p>
+      </div>
+
+      <div class="result-card">
+        <span class="result-metric">Multi-Session</span>
+        <h4>Stability Over Time</h4>
+        <p>
+          Models trained on earlier sessions maintained performance on later
+          sessions, indicating stable behavioral patterns.
+        </p>
+      </div>
+
+      <div class="result-card">
+        <span class="result-metric">Redundancy</span>
+        <h4>Feature Interactions</h4>
+        <p>
+          No single feature dominated performance. Instead, models
+          relied on combinations of timing features, reinforcing the
+          importance of non-linear interactions.
+        </p>
+      </div>
+    </div>
+  </section>
+</section>
+
+  <h2 class="walkthrough-title">Notebook Walkthrough</h2>
+  <p class="walkthrough-subtitle">
+    Full reproducible analysis and implementation details.
+  </p>
+
+<div *ngIf="isKeystroke" class="project-container" #analysisSection>
+  <aside class="sidebar">
+    <ul>
+      <li *ngFor="let section of sections" [class.active]="currentPage === section.page"
+        (click)="scrollToSection(section.page)">
+        {{ section.title }}
+      </li>
+    </ul>
+  </aside>
+  <div class="pdf-container" #pdfContainer>
+    <button class="fullscreen-btn" (click)="toggleFullScreen()">
+      {{ isFullscreen ? '⨉' : '⤢' }}
+    </button>
+
+    <pdf-viewer *ngIf="currentPage !== null" [src]="project?.pdfUrl" [render-text]="true" [page]="currentPage">
+    </pdf-viewer>
+  </div>
+</div>
 
 <!-- Traffic Sign Interactive Demo -->
 <section #demoSection *ngIf="isPdfProject && isTraffic" class="traffic-demo">
@@ -71,7 +207,7 @@
 </section>
 
 
-<div *ngIf="isPdfProject; else normalProjectLayout" class="project-container" #analysisSection>
+<div *ngIf="isPdfProject && !isKeystroke; else normalProjectLayout" class="project-container" #analysisSection>
   <aside class="sidebar">
     <ul>
       <li *ngFor="let section of sections" [class.active]="currentPage === section.page"
@@ -268,9 +404,9 @@
 
 
 
-<section class="github-section" *ngIf="project.title !== 'Pediatric Dashboard (Kaiser Permanente)'">
+<section class="github-section" *ngIf="project?.githubLink">
   <h2>View the Code!</h2>
-  <a *ngIf="project?.githubLink" [href]="project.githubLink" target="_blank" class="github-btn">
+  <a [href]="project.githubLink" target="_blank" class="github-btn">
     <img src="assets/githublogo.png" alt="GitHub Logo" />
   </a>
 </section>
