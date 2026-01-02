@@ -1,0 +1,416 @@
+/* =========================
+   SECTION
+   ========================= */
+.timeline-section {
+  background: linear-gradient(
+    to bottom,
+
+    /* TOP: brief white */
+    #ffffff 0%,
+    #ffffff 8%,
+
+    /* FADE IN (earlier) */
+    #f2f7ff 16%,
+    #e8f1ff 26%,
+
+    /* MIDDLE: dominant blue */
+    #e8f1ff 45%,
+    #e8f1ff 80%,
+
+    /* FADE OUT (later) */
+    #f2f7ff 92%,
+    #ffffff 100%
+  );
+
+  padding: 120px 0 160px;
+}
+.timeline {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(30,136,229,0.3),
+    rgba(30,136,229,0.05)
+  );
+  transform: translateX(-50%);
+}
+
+.timeline-title {
+  margin-left: 250px;
+  text-align: left;
+  font-size: 44px;
+  font-weight: 800;
+  margin-bottom: 50px;
+  position: relative;
+
+  /* Gradient text */
+  background: linear-gradient(
+    90deg,
+    #3b82f6,   /* lighter blue */
+    #1e40af    /* deeper blue */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+@keyframes underlineGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 240px;
+  }
+}
+
+.timeline-title::after {
+  content: "";
+  display: block;
+
+  width: 0;                 /* start closed */
+  height: 4px;
+  background: #007bff;
+
+  margin: 12px 0 0 0;       /* LEFT aligned */
+  border-radius: 2px;
+
+  animation: underlineGrow 1s ease-out forwards 0.8s;
+}
+
+/* =========================
+   TIMELINE CORE
+   ========================= */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* vertical center line */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: #e5e7eb;
+  transform: translateX(-50%);
+}
+
+/* =========================
+   ROW
+   ========================= */
+.timeline-row {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+/* =========================
+   DOTS
+   ========================= */
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 22px;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #1e88e5;
+  z-index: 3;
+}
+
+/* Micro (certifications) dot */
+.micro-dot {
+  width: 10px;
+  height: 10px;
+  border: none;
+  background: #9ca3af;
+}
+
+/* =========================
+   CARDS
+   ========================= */
+.journey-item {
+  width: 48%;
+  background: #ffffff;
+  padding: 22px 26px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.journey-item h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.journey-meta {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.journey-date {
+  display: inline-block;
+  margin: 6px 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e88e5;
+}
+
+.journey-item p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #334155;
+}
+
+/* =========================
+   LEFT / RIGHT
+   ========================= */
+.journey-item.left {
+  margin-right: auto;
+}
+
+.journey-item.right {
+  margin-left: auto;
+}
+
+/* =========================
+   SPECIAL STATES
+   ========================= */
+
+/* Kaiser highlight */
+.journey-item.highlight {
+  border-left: 5px solid #1e88e5;
+  box-shadow: 0 12px 30px rgba(30, 136, 229, 0.25);
+}
+
+/* Capstone (current) */
+.journey-item.current {
+  border-left: 5px solid #22c55e;
+}
+
+.timeline-row .journey-item.current + .timeline-dot,
+.timeline-row.current .timeline-dot {
+  border-color: #22c55e;
+}
+
+/* Graduation */
+.journey-item.final {
+  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+  border-left: 5px solid #6366f1;
+}
+
+.timeline-row .journey-item.final + .timeline-dot {
+  border-color: #6366f1;
+}
+
+/* Certifications card */
+.journey-item.micro {
+  width: 42%;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 8px 0;
+  font-size: 14px;
+  margin-top:48px
+}
+
+.journey-item.micro p {
+  color: #6b7280;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 900px) {
+  .timeline::before {
+    left: 12px;
+  }
+
+  .timeline-dot {
+    left: 12px;
+    transform: none;
+  }
+
+  .journey-item,
+  .journey-item.micro {
+    width: 100%;
+    margin-left: 32px;
+  }
+
+  .journey-item.left,
+  .journey-item.right {
+    margin: 0;
+  }
+}
+
+.timeline-row .journey-item {
+  margin-top: 65px; /* pushes card below dot */
+}
+/* Push cards farther away from center line */
+.journey-item.left {
+  margin-right: auto;
+  transform: translateX(-80px);
+}
+
+.journey-item.right {
+  margin-left: auto;
+  transform: translateX(80px);
+}
+/* =========================
+   CERTIFICATION DOT
+   ========================= */
+.timeline > .timeline-dot.micro-dot {
+  position: absolute;
+
+  left: 50%;
+  top: 22px; /* same anchor as normal dots */
+
+  transform: translateX(-50%);
+
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid #0a0a0a;
+  background: #000000;
+  border-radius: 50%;
+
+  z-index: 4;
+}
+.timeline .timeline-dot.micro-dot {
+  top: 300px;
+}
+.timeline-dot.micro-dot {
+  width: 14px;
+  height: 14px;
+
+  background: #9ca3af;   /* solid grey */
+  border: none;          /* remove outline */
+  border-radius: 50%;
+
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+}
+.micro-title {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* =========================
+   DOT ICONS
+   ========================= */
+.timeline-dot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* smaller icon for certification dot */
+.timeline-dot.micro-dot img {
+  width: 80%;
+  height: 80%;
+}
+.timeline-dot {
+  background: #ffffff;
+  border: 3px solid #000000
+}
+.timeline-dot img.kaiser {
+  transform: scale(1.15);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  pointer-events: none;
+  background: #ffffff;
+  border: 3px solid #000000
+}
+.journey-item {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+
+
+
+.timeline::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(30, 136, 229, 0),
+    rgba(30, 136, 229, 0.35),
+    rgba(30, 136, 229, 0)
+  );
+}
+
+.journey-date {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.journey-item.micro {
+  opacity: 0.85;
+}
+
+.journey-item.micro:hover {
+  opacity: 1;
+}
+.journey-item.micro::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #9ca3af;
+  margin-bottom: 8px;
+}
+.journey-item h3 {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.journey-item h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background: linear-gradient(
+    90deg,
+    #5c95f1,
+    #1759aa
+  );
+
+  border-radius: 2px;
+}
