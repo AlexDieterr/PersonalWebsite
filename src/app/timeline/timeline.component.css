@@ -242,30 +242,7 @@
   color: #6b7280;
 }
 
-/* =========================
-   RESPONSIVE
-   ========================= */
-@media (max-width: 900px) {
-  .timeline::before {
-    left: 12px;
-  }
 
-  .timeline-dot {
-    left: 12px;
-    transform: none;
-  }
-
-  .journey-item,
-  .journey-item.micro {
-    width: 100%;
-    margin-left: 32px;
-  }
-
-  .journey-item.left,
-  .journey-item.right {
-    margin: 0;
-  }
-}
 
 .timeline-row .journey-item {
   margin-top: 65px; /* pushes card below dot */
@@ -413,4 +390,57 @@
   );
 
   border-radius: 2px;
+}
+/* =========================
+   MOBILE TIMELINE FIX
+   ========================= */
+@media (max-width: 900px) {
+
+  /* Move the center line to the left */
+  .timeline::before {
+    left: 20px;
+    transform: none;
+  }
+
+  /* Lock all dots to the line */
+  .timeline-dot {
+    left: 20px;
+    transform: none;
+  }
+
+  /* Stack cards vertically */
+  .journey-item,
+  .journey-item.micro {
+    width: 100%;
+    margin-left: 56px;
+    margin-right: 0;
+    transform: none !important;  /* 🔴 THIS IS THE KEY */
+  }
+
+  /* Remove left/right behavior */
+  .journey-item.left,
+  .journey-item.right {
+    margin: 0;
+  }
+
+  /* Slightly tighter spacing */
+  .timeline {
+    gap: 48px;
+  }
+}
+
+@media (max-width: 900px) {
+
+  /* Center title on mobile */
+  .timeline-title {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Center underline on mobile */
+  .timeline-title::after {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
