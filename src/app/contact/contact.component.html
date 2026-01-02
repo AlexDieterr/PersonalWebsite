@@ -26,4 +26,51 @@
         <img src="assets/icons8-email-64.png" alt="Email" />
       </a>
     </div>
-  </section>
+
+
+    <form
+      class="contact-form"
+      (ngSubmit)="sendEmail()"
+      #contactForm="ngForm"
+    >
+
+      <input
+        type="text"
+        name="from_name"
+        [(ngModel)]="form.name"
+        placeholder="Your name"
+        autocomplete="email"
+        required
+      />
+
+      <input
+        type="email"
+        name="from_email"
+        autocomplete="email"
+        [(ngModel)]="form.email"
+        placeholder="Your email or phone number"
+        required
+      />
+
+      <textarea
+        name="message"
+        [(ngModel)]="form.message"
+        placeholder="Your message"
+        rows="5"
+        required
+      ></textarea>
+
+      <button type="submit" [disabled]="loading || !contactForm.valid">
+        {{ loading ? 'Sending…' : 'Send Message' }}
+      </button>
+
+      <p *ngIf="success" class="form-status success">
+        Message sent successfully.
+      </p>
+
+      <p *ngIf="error" class="form-status error">
+        Failed to send message. Please try again.
+      </p>
+
+    </form>
+</section>
