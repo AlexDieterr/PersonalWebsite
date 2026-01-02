@@ -73,7 +73,7 @@ export class ProjectDetailsComponent {
 
   projectData: Record<string, any> = {
     project1: {
-      title: 'Identifying Users via Typing Behavior',
+      title: 'Keystroke Dynamics: Identifying Users via Typing Behavior',
       description:
         'This project investigates whether users can be identified solely from keystroke timing data, without relying on the actual text being typed. The analysis explores how individual typing patterns differ and evaluates multiple models to measure how separable users are based on their keystroke dynamics.',
       techStack: [
@@ -87,14 +87,13 @@ export class ProjectDetailsComponent {
       pdfUrl: '/assets/keystroke_dynamics_walkthrough.pdf',
       type: 'pdf',
       sections: [
-        { title: 'Introduction', page: 1 },
-        { title: 'Dataset Overview', page: 2 },
-        { title: 'Feature Extraction', page: 4 },
-        { title: 'Exploratory Analysis', page: 7 },
-        { title: 'Modeling Approach', page: 10 },
-        { title: 'Model Evaluation', page: 14 },
-        { title: 'Discussion', page: 18 },
-        { title: 'Conclusion', page: 21 },
+        { title: 'Introduction and Dataset', page: 1 },
+        { title: 'Problem Setup', page: 2 },
+        { title: 'Model Comparison', page: 3 },
+        { title: 'Differences Across users', page: 4 },
+        { title: 'Separability', page: 7 },
+        { title: 'Feature Importance', page: 8 },
+        { title: 'Conclusion', page: 9 },
       ],
     },
 

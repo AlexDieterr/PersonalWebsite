@@ -8,6 +8,8 @@
   <span class="cue-text">{{ scrollCueText }}</span>
   <span class="cue-arrow">{{ scrollCueArrow }}</span>
 </div>
+
+
 <!-- Keystroke Project -->
 <section *ngIf="isPdfProject && isKeystroke">
   <section class="keystroke-hero">
@@ -24,18 +26,70 @@
     </a>
 
   </section>
-  <div class="keystroke-overview">
-    <h2>Overview</h2>
-    <p>
-      This project explores whether people can be identified based only on how they type, using keystroke timing data rather than the actual text they enter. The analysis uses the CMU Keystroke Dynamics Benchmark dataset, where 51 users typed the same fixed password (.tie5Roanl) 400 times across different sessions. This setup allows the focus to stay purely on typing behavior instead of content.
 
-I extracted features such as key hold times and the timing between consecutive key presses, then evaluated how well different machine learning models could distinguish users based on these patterns. The project includes both a multi-class user identification task and a binary verification task, similar to how keystroke dynamics are discussed in real authentication systems.
+  <!-- Overview section -->
+  <section class="keystroke-overview-layout">
+    <div class="keystroke-overview">
+      <h2>Overview</h2>
+      <p>
+        This project explores whether people can be identified based only on how they type, using keystroke timing data rather than the actual text they enter. The analysis uses the CMU Keystroke Dynamics Benchmark dataset, where 51 users typed the same fixed password (.tie5Roanl) 400 times across different sessions. This setup allows the focus to stay purely on typing behavior instead of content.
+      </p>
+      <p>
+        I extracted features such as key hold times and the timing between consecutive key presses, then evaluated how well different machine learning models could distinguish users based on these patterns. The project includes both a multi-class user identification task and a binary verification task, similar to how keystroke dynamics are discussed in real authentication systems.
+      </p>
+      <p>
+        The goal of this work is to understand what makes a user identifiable and why some users are much easier to recognize than others. The results show large differences in identifiability across users and suggest that being distinct from other users matters more than consistency alone. The notebook walkthrough below provides a full, step-by-step record of the analysis and modeling process for transparency and reproducibility.
+      </p>
+      <p>
+        A big focus of this project was making sure the evaluation was set up correctly. Train and test splits were done in a session-aware way so that typing samples from the same session never appeared in both sets, which helps avoid inflated results. Instead of stopping at overall accuracy, I looked at performance for individual users and where models made mistakes. This led to a separability analysis that compares how different a user’s typing is from others relative to how much their own typing varies, helping explain why some users are much easier to identify than others.
+      </p>
+    </div>
 
-    </p>
-    <p>
-The goal of this work is to understand what makes a user identifiable and why some users are much easier to recognize than others. The results show large differences in identifiability across users and suggest that being distinct from other users matters more than consistency alone. The notebook walkthrough below provides a full, step-by-step record of the analysis and modeling process for transparency and reproducibility.
-    </p>
-  </div>
+    <aside class="keystroke-structure">
+      <h3>Project Structure</h3>
+      <pre class="repo-tree">
+  keystroke-dynamics/
+  │
+  ├── data/
+  │   └── DSL-StrongPasswordData.csv
+  │       # Raw data from https://www.cs.cmu.edu/~keystroke/ 
+  │
+  ├── notebooks/
+  │   ├── keystroke_dynamics_walkthrough.ipynb
+  │   └── keystroke_dynamics_walkthrough.pdf
+  │       # Step-by-step analysis walkthrough
+  │
+  ├── reports/
+  │   └── figures/
+  │       ├── model_comparison.png
+  │       ├── per_user_accuracy_distribution.png
+  │       └── separability_vs_accuracy.png
+  │       # Saved plots and figures
+  │
+  ├── src/
+  │   ├── 00_load_and_check.py
+  │   ├── 01_baseline_identification.py
+  │   ├── 02_cv_identification.py
+  │   ├── 03_confusion_and_per_user_accuracy.py
+  │   ├── 04_within_user_variability.py
+  │   ├── 05_verification_task.py
+  │   ├── 06_random_forest_identification.py
+  │   ├── 07_feature_importance.py
+  │   ├── 08_separability_metric.py
+  │   ├── 09_xgboost_identification.py
+  │   ├── 10_plot_model_comparison.py
+  │   ├── 11_plot_per_user_accuracy.py
+  │   └── 12_plot_separability_vs_accuracy.py
+  │       # Modular analysis, modeling, and evaluation scripts
+  │
+  ├── README.md
+  │   # Project overview
+  │
+  └── requirements.txt
+      # Reproducible Python environment
+      </pre>
+    </aside>
+  </section>
 
   <section class="keystroke-results">
     <h3>Key Results</h3>
@@ -46,7 +100,7 @@ The goal of this work is to understand what makes a user identifiable and why so
         <h4>Tree-Based Models</h4>
         <p>
           Random Forest and XGBoost significantly outperformed linear models
-          for user identification at <br/> 86% vs 78% accuracy.
+          for user identification at <br/> 86% vs 78% accuracy. XGBoost did not provide statistically significant improvement over Random Forest.
         </p>
       </div>
 
@@ -110,7 +164,7 @@ The goal of this work is to understand what makes a user identifiable and why so
         <h4>Feature Interactions</h4>
         <p>
           No single feature dominated performance. Instead, models
-          relied on combinations of timing features, reinforcing the
+          relied on combinations of timing features, showing the
           importance of non-linear interactions.
         </p>
       </div>
@@ -118,14 +172,14 @@ The goal of this work is to understand what makes a user identifiable and why so
   </section>
 </section>
 
-<section *ngIf="isKeystroke">
+<section class="keystroke-walkthrough" *ngIf="isKeystroke">
   <h2 class="walkthrough-title">Notebook Walkthrough</h2>
   <p class="walkthrough-subtitle">
     Full reproducible analysis and implementation details.
   </p>
 </section>
 
-<div *ngIf="isKeystroke" class="project-container" #analysisSection>
+<div *ngIf="isKeystroke" class="project-container-keystroke" #analysisSection>
   <aside class="sidebar">
     <ul>
       <li *ngFor="let section of sections" [class.active]="currentPage === section.page"
@@ -404,9 +458,9 @@ The goal of this work is to understand what makes a user identifiable and why so
 
 
 <section class="github-section" *ngIf="project?.githubLink">
-  <h2>View the Code!</h2>
-  <a [href]="project.githubLink" target="_blank" class="github-btn">
-    <img src="assets/githublogo.png" alt="GitHub Logo" />
-  </a>
+  <div class="hero-cta-label">View Repository</div>
+    <a [href]="project.githubLink" target="_blank" class="keystroke-github-btn">
+      <img src="assets/githublogo.png" alt="GitHub Logo" />
+    </a>
 </section>
 <app-contact></app-contact>
