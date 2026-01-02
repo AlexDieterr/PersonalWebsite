@@ -28,21 +28,6 @@ app-header {
     z-index: 1000;
 }
 
-
-.page-title {
-    text-align: center;
-    font-size: 32px;
-    font-weight: bold;
-    margin: 40px 0;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
-    opacity: 0;
-    transform: translateY(-20px);
-    animation: fadeInSlide 0.8s ease-out forwards;
-}
-
 .page-title::after {
     content: "";
     display: block;
@@ -78,9 +63,6 @@ app-header {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     align-items: center;
     overflow-x: hidden;
-}
-.keystroke-walkthrough {
-    margin-top: 100px;
 }
 /* ---- Notebook Walkthrough Section ---- */
 .keystroke-walkthrough {
@@ -196,8 +178,6 @@ app-header {
     border: 2px solid #ddd;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    overflow: hidden;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -354,23 +334,25 @@ body {
 }
 
 
-
-.page-title,
 .project-container {
     margin-top: 120px;
 }
 
-
-
 .page-title {
+    margin-top: 120px;
     padding-top: 0px;
-    font-size: 32px;
-    font-weight: bold;
-    color: #333;
     text-transform: uppercase;
     letter-spacing: 1px;
     position: relative;
     display: block;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInSlide 0.8s ease-out forwards;
 }
 
 
@@ -399,20 +381,6 @@ body {
         transform: translateY(0);
     }
 }
-
-
-
-
-@keyframes underlineGrow {
-    from {
-        width: 0;
-    }
-
-    to {
-        width: 50%;
-    }
-}
-
 
 .fullscreen-btn {
     position: absolute;
@@ -863,11 +831,6 @@ body {
     transition: all 0.25s ease;
 }
 
-.drop-zone p {
-    color: #6b7280;
-    font-size: 16px;
-}
-
 .drop-zone.dragging {
     background: #eef6ff;
     border-color: #007bff;
@@ -975,26 +938,6 @@ body {
         transform: translateY(0);
     }
 }
-
-
-
-.confidence-bar-container {
-    width: 100%;
-    height: 10px;
-    background: #e5eefc;
-    border-radius: 999px;
-    overflow: hidden;
-    margin-top: 10px;
-}
-
-.confidence-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #19d247, #63f553);
-    width: 0%;
-    transition: width 0.6s ease;
-    border-radius: 999px;
-}
-
 .prediction-loading {
     margin-top: 16px;
     font-size: 15px;
@@ -1272,11 +1215,6 @@ body {
   line-height: 1.7;
   color: #333;
 }
-.keystroke-results {
-  max-width: 1000px;
-  margin: 0 auto 80px;
-  padding-top: 0px;
-}
 
 .keystroke-results ul {
   padding-left: 20px;
@@ -1299,14 +1237,6 @@ body {
   margin-bottom: 24px;
 }
 
-
-.keystroke-hero {
-  max-width: 900px;
-  margin: 60px auto 40px;
-  padding: 30px;
-  border-left: 4px solid #1e88e5;
-}
-
 .keystroke-hero h2 {
   color: #1e88e5;
   margin-bottom: 10px;
@@ -1322,22 +1252,6 @@ body {
 .keystroke-notebook h3 {
   color: #1e88e5;
   margin-bottom: 15px;
-}
-
-
-
-.results-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-.result-card {
-  background: #ffffff;
-  border: 1px solid #e6e6e6;
-  border-radius: 8px;
-  padding: 20px;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .result-card:hover {
