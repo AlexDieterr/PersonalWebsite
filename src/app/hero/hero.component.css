@@ -1,4 +1,6 @@
 .hero {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6,6 +8,43 @@
   text-align: center;
   background-color: white;
   height: auto;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("/assets/hero-bg2.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 1;           
+  pointer-events: none;   
+  z-index: 0;
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 12%,
+    black 35%,
+    black 85%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 12%,
+    black 35%,
+    black 85%,
+    transparent 100%
+  );
+}
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .intro {

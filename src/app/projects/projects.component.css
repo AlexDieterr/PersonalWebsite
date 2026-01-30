@@ -230,3 +230,28 @@
     padding: 8px 0;
   }
 }
+
+.project-subtitle {
+  font-size: 0.95rem;        
+  font-weight: 600;          
+  font-family: 'Inter', sans-serif; 
+  letter-spacing: 0.01em;
+    color: #1d4ed8;
+  margin: 0.3rem 0 0.45rem 0;
+  animation: subtleFade 2.5s ease-in-out infinite;
+
+}
+@keyframes subtleFade {
+  0% {
+    opacity: 0.4;
+    transform: translateY(0px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+  100% {
+    opacity: 0.4;
+    transform: translateY(0px);
+  }
+}

@@ -4,6 +4,9 @@
         <div class="project-card" *ngFor="let project of projects" (click)="goToProject(project.id)">
             <img [src]="project.image" [alt]="project.title" class="project-thumbnail" />
             <p class="project-title">{{ project.title }} ({{ project.year }})</p>
+             <p *ngIf="project.subtitle" class="project-subtitle">
+                {{ project.subtitle }}
+            </p>
             <p class="project-tech">{{ project.tech }}</p>
         </div>
     </div>

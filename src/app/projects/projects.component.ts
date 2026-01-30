@@ -24,6 +24,7 @@ export class ProjectsComponent {
     {
       id: 'project2',
       title: 'Traffic Sign Classification using Neural Networks',
+      subtitle: '(Demo Available)',
       year: '2025',
       tech: 'Python, TensorFlow, Keras, Deep Learning',
       image: 'assets/thumbnail_traffic.webp',
