@@ -1,10 +1,29 @@
 .about-me {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 4rem 2rem;
-    background-color: #f4f4f4;
-    margin-top: 50px;
+  position: relative;                 /* ADD */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  background-color: #f6f2f2;
+  overflow: hidden;     
+  padding-bottom: 160px;              /* ADD */
+}
+.about-me {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 20%,
+    black 90%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 20%,
+    black 90%,
+    transparent 100%
+  );
 }
 
 .content {
@@ -151,3 +170,23 @@
       padding-left: 0;
     }
   }
+
+@media (max-width: 768px) {
+  .about-me {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0px,
+      black 80px,                 /* top fade */
+      black calc(100% - 40px),    /* bottom fade STARTS later */
+      transparent 100%
+    );
+
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0px,
+      black 80px,
+      black calc(100% - 40px),
+      transparent 100%
+    );
+  }
+}

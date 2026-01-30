@@ -1,7 +1,47 @@
 .projects {
+  position: relative;              /* ADD */
   text-align: center;
   padding: 0rem 2rem;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
+  overflow: hidden;    
+  padding-bottom: 170px;            /* ADD */
+}
+.projects::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("/assets/projects-bg.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  pointer-events: none;
+  z-index: 0;
+
+  /* EDGE FADES */
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 25%,
+      black 75%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to right,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%
+    );
+
+  -webkit-mask-composite: intersect;
+  mask-composite: intersect;
+}
+.projects > * {
+  position: relative;
+  z-index: 1;
 }
 
 .projects-header {
