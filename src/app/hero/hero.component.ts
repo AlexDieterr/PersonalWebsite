@@ -21,6 +21,15 @@ export class HeroComponent implements AfterViewInit {
     }
   }
 
+  scrollToProjects() {
+    if (isPlatformBrowser(this.platformId)) {
+      const projectsSection = document.getElementById('projects');
+      if (projectsSection) {
+        projectsSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
+
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {

@@ -140,7 +140,8 @@ h1 {
 
 
 .download-btn,
-.contact-btn {
+.contact-btn,
+.projects-btn {
   display: inline-block;
   min-width: 150px;
   background: linear-gradient(90deg, #90cbf8, #3a85b7);
@@ -159,21 +160,22 @@ h1 {
   padding: 0.7rem .2rem;
 }
 
-.contact-btn {
+.contact-btn,
+.projects-btn {
   padding: 0.7rem 1rem;
-
 }
 
-
 .download-btn:hover,
-.contact-btn:hover {
+.contact-btn:hover,
+.projects-btn:hover {
   transform: scale(1.05);
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 
 .download-btn:active,
-.contact-btn:active {
+.contact-btn:active,
+.projects-btn:active {
   transform: scale(0.98);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -250,7 +252,8 @@ h1 {
   }
 
   .download-btn,
-  .contact-btn {
+  .contact-btn,
+  .projects-btn {
     min-width: 140px;
     font-size: 0.95rem;
     padding: 0.6rem 1rem;
