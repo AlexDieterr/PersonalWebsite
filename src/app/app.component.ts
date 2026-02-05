@@ -4,19 +4,28 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { CommonModule } from '@angular/common';
 
+const LOADING_MIN_MS = 1500;
+
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  imports: [RouterModule, HeaderComponent,CommonModule],
+  styleUrls: ['./app.component.css'],
+  imports: [RouterModule, HeaderComponent, CommonModule],
 })
 export class AppComponent implements OnInit {
   showMobileNotice = false;
+  showLoading = true;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    const elapsed = performance.now();
+    const remaining = Math.max(0, LOADING_MIN_MS - elapsed);
+    setTimeout(() => {
+      this.showLoading = false;
+    }, remaining);
+
     this.pingTrafficApi();
     this.checkMobileNotice();
   }

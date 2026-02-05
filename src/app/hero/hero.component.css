@@ -51,6 +51,82 @@
   flex: 1;
 }
 
+/* Entrance animations (staggered with name typing) */
+.hero-text-entrance {
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: heroFadeDown 0.5s ease-out 0.3s forwards;
+}
+
+.hero-photo-entrance {
+  opacity: 0;
+  transform: scale(0.92);
+  animation: heroPhotoIn 0.7s ease-out 0.2s forwards;
+}
+.hero-photo-entrance img {
+  display: block;
+}
+
+.hero-title-entrance {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: heroFadeUp 0.5s ease-out forwards;
+}
+.hero-title-1 { animation-delay: 2.2s; }
+.hero-title-2 { animation-delay: 2.45s; }
+
+.hero-btn-entrance {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroBtnIn 0.45s ease-out forwards;
+}
+.hero-btn-1 { animation-delay: 2.7s; }
+.hero-btn-2 { animation-delay: 2.9s; }
+.hero-btn-3 { animation-delay: 3.1s; }
+
+@keyframes heroFadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroPhotoIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroBtnIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .small-text {
   font-size: 1.2rem;
@@ -212,6 +288,22 @@ h1 {
 
 .name.typing-done {
   border-right: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-text-entrance,
+  .hero-photo-entrance,
+  .hero-title-entrance,
+  .hero-btn-entrance {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .name {
+    animation: none;
+    width: 100%;
+    border-right: none;
+  }
 }
 
 /* Mobile Styles */

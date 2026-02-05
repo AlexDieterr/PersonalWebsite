@@ -1,6 +1,180 @@
 html {
   scroll-behavior: smooth;
 }
+
+.app-loading {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Quicksand', 'Roboto', sans-serif;
+  z-index: 9999;
+  overflow: hidden;
+  contain: layout style paint;
+}
+
+.app-loading-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #e3f2fd 0%, #f0f7ff 45%, #fff 100%);
+  z-index: 0;
+}
+.app-loading-waves {
+  position: absolute;
+  inset: -25%;
+  z-index: 1;
+  pointer-events: none;
+  will-change: transform;
+}
+.app-loading-wave-svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.app-loading-wave {
+  transform-origin: center center;
+  /* Match 0% keyframe so no jump when animation starts after delay */
+  transform: translateX(-10%) scale(1.2) rotate(-1.5deg);
+  opacity: 0.85;
+  animation: app-loading-swoosh 2.8s ease-in-out infinite;
+  will-change: transform;
+}
+/* Stagger wave start so first paint is lighter (reduces initial jank) */
+.app-loading-wave-1 { animation-delay: 0.25s; animation-duration: 2.6s; }
+.app-loading-wave-2 { animation-delay: 0.2s; animation-duration: 3s; }
+.app-loading-wave-3 { animation-delay: 0.3s; animation-duration: 2.4s; }
+.app-loading-wave-4 { animation-delay: 0.22s; animation-duration: 3.2s; }
+@keyframes app-loading-swoosh {
+  0%, 100% {
+    transform: translateX(-10%) scale(1.2) rotate(-1.5deg);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateX(10%) scale(1.25) rotate(1.5deg);
+    opacity: 1;
+  }
+}
+
+.app-loading-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.app-loading-logo-wrap {
+  position: relative;
+  margin-bottom: 1rem;
+}
+.app-loading-logo-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  margin: -60px 0 0 -60px;
+  border-radius: 50%;
+  border: 2px solid rgba(58, 133, 183, 0.35);
+  animation: app-loading-ring 2.5s ease-in-out 0.15s infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+.app-loading-logo-ring::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(144, 203, 248, 0.5);
+  animation: app-loading-ring 2.5s ease-in-out 0.55s infinite reverse;
+  will-change: transform;
+}
+@keyframes app-loading-ring {
+  0%, 100% { transform: scale(0.95); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+.app-loading-logo {
+  display: block;
+  margin: 0 auto;
+  animation: app-loading-pulse 1.2s ease-in-out 0.1s infinite;
+  filter: drop-shadow(0 4px 12px rgba(58, 133, 183, 0.25));
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+}
+.app-loading-text {
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #3a85b7 0%, #90cbf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+.app-loading-dots span {
+  animation: app-loading-dot 1.2s ease-in-out infinite;
+  opacity: 0.3;
+}
+.app-loading-dots span:nth-child(1) { animation-delay: 0s; }
+.app-loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.app-loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes app-loading-dot {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+.app-loading-bar {
+  width: 140px;
+  height: 3px;
+  background: rgba(58, 133, 183, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.app-loading-bar-fill {
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, #90cbf8, #3a85b7);
+  border-radius: 2px;
+  animation: app-loading-bar 1.4s ease-in-out 0.2s infinite;
+  will-change: transform;
+}
+@keyframes app-loading-bar {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+@keyframes app-loading-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.03); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-loading-wave,
+  .app-loading-logo,
+  .app-loading-logo-ring,
+  .app-loading-logo-ring::before,
+  .app-loading-dots span,
+  .app-loading-bar-fill {
+    animation: none;
+    will-change: auto;
+  }
+  .app-loading-waves {
+    will-change: auto;
+  }
+  .app-loading-wave {
+    opacity: 0.9;
+    transform: none;
+  }
+  .app-loading-logo-ring,
+  .app-loading-logo-ring::before {
+    opacity: 0.7;
+    transform: none;
+  }
+  .app-loading-dots span {
+    opacity: 0.8;
+  }
+}
+
 .mobile-notice {
   position: fixed;
   bottom: 16px;

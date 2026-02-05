@@ -1,7 +1,46 @@
-<app-header></app-header>
-
-<router-outlet></router-outlet>
-<router-outlet></router-outlet>
+@if (showLoading) {
+  <div class="app-loading" aria-hidden="true">
+    <div class="app-loading-bg"></div>
+    <div class="app-loading-waves" aria-hidden="true">
+      <svg class="app-loading-wave-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="wave-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#90cbf8" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#3a85b7" stop-opacity="0.35"/>
+          </linearGradient>
+          <linearGradient id="wave-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#3a85b7" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#90cbf8" stop-opacity="0.25"/>
+          </linearGradient>
+          <linearGradient id="wave-grad-3" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#90cbf8" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#3a85b7" stop-opacity="0.45"/>
+          </linearGradient>
+          <linearGradient id="wave-grad-4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3a85b7" stop-opacity="0.2"/>
+            <stop offset="100%" stop-color="#90cbf8" stop-opacity="0.3"/>
+          </linearGradient>
+        </defs>
+        <path class="app-loading-wave app-loading-wave-1" fill="url(#wave-grad-1)" d="M0,400 Q300,200 600,400 T1200,400 V800 H0 Z"/>
+        <path class="app-loading-wave app-loading-wave-2" fill="url(#wave-grad-2)" d="M0,450 Q250,250 500,450 T1000,450 T1500,450 V800 H-300 Z"/>
+        <path class="app-loading-wave app-loading-wave-3" fill="url(#wave-grad-3)" d="M0,350 Q400,150 800,350 T1600,350 V800 H0 Z"/>
+        <path class="app-loading-wave app-loading-wave-4" fill="url(#wave-grad-4)" d="M0,500 Q350,300 700,500 T1400,500 V800 H-200 Z"/>
+      </svg>
+    </div>
+    <div class="app-loading-inner">
+      <div class="app-loading-logo-wrap">
+        <div class="app-loading-logo-ring"></div>
+        <img src="assets/initialsLogo.png" alt="" class="app-loading-logo" width="88" height="88">
+      </div>
+      <span class="app-loading-text">Loading<span class="app-loading-dots"><span>.</span><span>.</span><span>.</span></span></span>
+      <div class="app-loading-bar"><div class="app-loading-bar-fill"></div></div>
+    </div>
+  </div>
+} @else {
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+}
 
 <div class="mobile-notice" *ngIf="showMobileNotice">
   <p>This site is best experienced on a desktop.</p>
