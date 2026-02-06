@@ -3,6 +3,10 @@ html {
 }
 
 /* Keep section titles visible below fixed header when scrolling from nav */
-#projects {
+#hero,
+#timeline,
+#projects,
+#about,
+#contact {
   scroll-margin-top: 100px;
 }

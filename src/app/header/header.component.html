@@ -7,9 +7,9 @@
   
     <nav class="nav-links">
       <a routerLink="/" routerLinkActive="active-link">Home</a>
-      <a class = "about" (click) ="scrollToAbout()" routerLinkActive="active-link">About Me</a>
-      <a class = "projects" (click) = "scrollToProjects()" routerLinkActive="active-link">Projects</a>
-      <a class = "contact" (click) = "scrollToContact()" routerLinkActive="active-link">Contact</a>
+      <a href="/#about" class="about" (click)="onSectionLinkClick($event, 'about')">About Me</a>
+      <a href="/#projects" class="projects" (click)="onSectionLinkClick($event, 'projects')">Projects</a>
+      <a href="/#contact" class="contact" (click)="onSectionLinkClick($event, 'contact')">Contact</a>
       <a
       class="linkedin"
       href="https://www.linkedin.com/in/alexdieter/"

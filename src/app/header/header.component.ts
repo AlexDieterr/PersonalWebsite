@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-header',
   templateUrl: './header.component.html',
   imports: [RouterModule],
-  styleUrls: ['./header.component.scss'],
+  styleUrls: ['./header.component.css'],
   standalone: true
 })
 export class HeaderComponent {
@@ -55,5 +55,12 @@ export class HeaderComponent {
 
   scrollToProjects() {
     this.scrollToSection('projects');
+  }
+
+  onSectionLinkClick(event: Event, sectionId: string) {
+    if (this.router.url === '/') {
+      event.preventDefault();
+      this.scrollToSection(sectionId);
+    }
   }
 }
